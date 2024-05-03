@@ -12,7 +12,6 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
-  
   final TextEditingController _emailsign = TextEditingController();
   final TextEditingController _passk = TextEditingController();
 
@@ -20,19 +19,19 @@ class _SignupState extends State<Signup> {
   bool isLoginfr = true;
 
   Future<void> createFireUserWitEmailPass() async {
-    try{
-      await Auth().createUserWEmailPass(
-        email: _emailsign.text, 
-        pass: _passk.text);
-    } on FirebaseAuthException catch (e){
+    try {
+      await Auth()
+          .createUserWEmailPass(email: _emailsign.text, pass: _passk.text);
+    } on FirebaseAuthException catch (e) {
       setState(() {
         errortext = e.message;
       });
     }
   }
 
-  Widget _errobitch(){
-    return Text(errortext == ''?'': '$errortext',
+  Widget _errobitch() {
+    return Text(
+      errortext == '' ? '' : '$errortext',
       style: const TextStyle(
         color: Colors.redAccent,
       ),
@@ -96,6 +95,7 @@ class _SignupState extends State<Signup> {
                         width: 380,
                         height: 60,
                         child: TextFormField(
+                          style: const TextStyle(color: Colors.white),
                           controller: _emailsign,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
@@ -129,6 +129,7 @@ class _SignupState extends State<Signup> {
                         width: 380,
                         height: 60,
                         child: TextFormField(
+                          style: const TextStyle(color: Colors.white),
                           controller: _passk,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
@@ -156,9 +157,7 @@ class _SignupState extends State<Signup> {
                         ),
                       ),
                       const SizedBox(height: 20),
-
                       _errobitch(),
-
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
