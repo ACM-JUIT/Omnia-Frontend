@@ -25,7 +25,7 @@ class Profile extends StatelessWidget {
   Widget _signoutButt(){
     return ElevatedButton(
       onPressed: signoutttt,
-      child: const Text('Sign out niga'),
+      child: const Text('Sign out'),
       );
   }
 
@@ -173,6 +173,7 @@ class Profile extends StatelessWidget {
               ),
 
               _userUID(),
+              const SizedBox(height: 20,),
               _signoutButt(),
               //Portfolio ig
             ],

@@ -54,9 +54,9 @@ class MyHomePage extends StatelessWidget {
                   TextButton.icon(
                     style: const ButtonStyle(
                       alignment: Alignment.center,
-                      iconSize: MaterialStatePropertyAll<double>(75),
+                      iconSize: WidgetStatePropertyAll<double>(75),
                       foregroundColor:
-                          MaterialStatePropertyAll<Color>(Colors.white),
+                          WidgetStatePropertyAll<Color>(Colors.white),
                     ),
                     onPressed: () {
                       Navigator.push(
