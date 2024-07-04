@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
+import 'package:omnia/Screens/Community/ACM/Sessions/session.dart';
 import 'package:readmore/readmore.dart';
 
 class ACMDetailsPage extends StatefulWidget {
@@ -33,7 +34,7 @@ class _ACMDetailsPageState extends State<ACMDetailsPage> {
               Container(
                 width: MediaQuery.of(context).size.width * 0.9,
                 decoration: BoxDecoration(
-                  color: Colors.grey[200],
+                  color: const Color.fromARGB(255, 191, 194, 236),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Padding(
@@ -79,7 +80,7 @@ class _ACMDetailsPageState extends State<ACMDetailsPage> {
                       const SizedBox(height: 20),
                       GestureDetector(
                         onTap: () {
-                          Navigator.pop(context);
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const Session()));
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -119,13 +120,13 @@ class _ACMDetailsPageState extends State<ACMDetailsPage> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "ACM Subheadings",
+                                              "2024-2025",
                                               style: TextStyle(
                                                 color: Colors.white,
                                               ),
                                             ),
                                             Text(
-                                              "ACM Headings",
+                                              "ACM Sessions",
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 18,
