@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
-import 'package:omnia/Screens/Community/acm.dart';
-import 'package:omnia/Screens/Community/members.dart';
+import 'package:omnia/Screens/Community/ACM/acm.dart';
+import 'package:omnia/Screens/Community/Council/council.dart';
+import 'package:omnia/Screens/Community/unused_members.dart';
 // import 'package:omnia/Screens/Home/home.dart';
 import 'package:omnia/Screens/Home/homescreen.dart';
 
@@ -27,7 +28,7 @@ class Community extends StatelessWidget {
                 }));
               },
             ),
-            bottom: const TabBar(
+            bottom: const TabBar( 
               labelPadding: EdgeInsets.all(3),
               indicatorColor: itemColor,
               indicatorSize: TabBarIndicatorSize.tab,
@@ -38,7 +39,7 @@ class Community extends StatelessWidget {
                   text: "ACM",
                 ),
                 Tab(
-                  text: "Members",
+                  text: "Council",
                 ),
               ],
             ),
@@ -47,9 +48,10 @@ class Community extends StatelessWidget {
           body: const TabBarView(
             children: [
               ACM(),
-              Members(),
+              Council(),
             ],
           )),
     );
   }
 }
+
