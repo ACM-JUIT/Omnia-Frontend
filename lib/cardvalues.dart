@@ -81,20 +81,24 @@ List<String> tenureDescription = [
 
 //.......SESSIONS CARD VALUES.......//
 
-const sessionCardNo = 4;
+const sessionCardNo = 6;
 
 List<String> sessionHeadings = [
-  "Hache",
-  "Qriosity",
-  "Inside-Out",
-  "Adventum",
-];
+  "Web Development",
+  "SMART INDIA HACKATHON",
+  "AI & ML",
+  "Fintech",
+  "App Development",
+  "Design",
+  ];
 
 List<String> sessionSubheadings = [
-  "Cyber Security",
-  "Cyber Security",
-  "UI/UX",
-  "Hackathon"
+  "JANUARY",
+  "MARCH",
+  "APRIL",
+  "JUNE",
+  "MAY",
+  "JULY",
 ];
 
 List<String> sessionImagesList = [
@@ -102,7 +106,8 @@ List<String> sessionImagesList = [
   "assets/sih.jpg",
   "assets/aiml.jpg",
   "assets/fintech.jpg",
-  
+  "assets/appdev.jpg",
+  "assets/design.jpg",
 ];
 
 List<String> sessionDescription = [
@@ -110,16 +115,19 @@ List<String> sessionDescription = [
   "Qriosity is a CTF (Capture the Flag) event where participants will be given a set of challenges to solve. The challenges will be based on various domains of Cyber Security like Web Exploitation, Cryptography, Forensics, etc. The participants will be given a flag for each challenge they solve. The participant with the maximum number of flags will be declared as the winner.",
   "Inside-Out is a UI/UX event where participants will be given a set of challenges to solve. The challenges will be based on various domains of UI/UX like Web Designing, App Designing, etc. The participants will be given a flag for each challenge they solve. The participant with the maximum number of flags will be declared as the winner.",
   "Adventum is a Hackathon event where participants will be given a set of challenges to solve. The challenges will be based on various domains of Cyber Security like Web Exploitation, Cryptography, Forensics, etc. The participants will be given a flag for each challenge they solve. The participant with the maximum number of flags will be declared as the winner.",
+  "APP Development is a Hackathon event where participants will be given a set of challenges to solve. The challenges will be based on various domains of Cyber Security like Web Exploitation, Cryptography, Forensics, etc. The participants will be given a flag for each challenge they solve. The participant with the maximum number of flags will be declared as the winner.",
+  "Design is a Hackathon event where participants will be given a set of challenges to solve. The challenges will be based on various domains of Cyber Security like Web Exploitation, Cryptography, Forensics, etc. The participants will be given a flag for each challenge they solve. The participant with the maximum number of flags will be declared as the winner.",
 ];
 
+List<String> galleryImagesList = [
+  "assets/appdev.jpg",
+  "assets/appdev.jpg",
+  "assets/appdev.jpg",
+  "assets/appdev.jpg",
+  "assets/appdev.jpg",
+  "assets/appdev.jpg",
 
-List<String> esessionImages = [
-  "assets/hache.png",
-  "assets/qriosity.png",
-  "assets/insideout.png",
-  "assets/horizon.png",
 ];
-
 
 
 
