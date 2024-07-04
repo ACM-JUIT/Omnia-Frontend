@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
 import 'package:omnia/Screens/Home/homescreen.dart';
-import 'package:omnia/Screens/Work/projects.dart';
-import 'package:omnia/Screens/Work/reso.dart';
+import 'package:omnia/Screens/Work/Projects/projects.dart';
+import 'package:omnia/Screens/Work/Resources/reso.dart';
 
 class Work extends StatelessWidget {
   const Work({super.key});

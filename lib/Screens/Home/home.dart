@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
-import 'package:omnia/Screens/Drawer/drawer.dart';
 import 'package:omnia/Screens/Home/events.dart';
 import 'package:omnia/cardvalues.dart';
 
@@ -45,7 +44,7 @@ class _MainHomeState extends State<MainHome> {
         ),
         centerTitle: false,
       ),
-      endDrawer: const CustomDrawer(),
+      // endDrawer: const CustomDrawer(),
       backgroundColor: primaryColor,
       body: SingleChildScrollView(
         child: Padding(
