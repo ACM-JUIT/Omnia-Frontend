@@ -13,121 +13,140 @@ class Session extends StatefulWidget {
 }
 
 class _SessionState extends State<Session> {
-  void _navigateToDetailsPage(String sessionHeadings, String sessionSubheadings,
-      String sessionImagesList, String sessionDescription,) {
+  void _navigateToDetailsPage(
+    String sessionHeadings,
+    String sessionSubheadings,
+    String sessionImagesList,
+    String sessionDescription,
+  ) {
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => SessionDetailsPage(
-            sessionHeadings: sessionHeadings,
-            sessionSubheadings: sessionSubheadings,
-            sessionImagesList: sessionImagesList,
-            sessionDescription: sessionDescription,           
-            ),
+          sessionHeadings: sessionHeadings,
+          sessionSubheadings: sessionSubheadings,
+          sessionImagesList: sessionImagesList,
+          sessionDescription: sessionDescription,
+        ),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: primaryColor,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              
-              ListView.builder(
-                shrinkWrap: true,
-                itemCount: sessionCardNo,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      _navigateToDetailsPage(
-                        sessionSubheadings[index],
-                        sessionHeadings[index],
-                        sessionImagesList[index],
-                        sessionDescription[index],
-                      );
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          gradient: const LinearGradient(colors: [
-                            gradientColor2,
-                            gradientColor1,
-                          ]),
-                          border: Border.all(color: itemColor,width: 0.6),
-                          
-                          borderRadius: BorderRadius.circular(10),
-                          color: cardColor,
-                        ),
-                        height: 120,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: Stack(
-  children: [
-    ClipRRect(
-      borderRadius: BorderRadius.circular(10.0),
-      child: Image.asset(
-        sessionImagesList[index],
-        alignment: Alignment.center,
-        fit: BoxFit.cover,
-        width: double.infinity,
-        height: double.infinity,
-      ),
-    ),
-    ClipRRect(
-      borderRadius: BorderRadius.circular(10.0),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 4.0, sigmaY: 4.0),
-        child: Container(
-          color: Colors.black.withOpacity(0.3), // Adjust the opacity as needed
-          width: double.infinity,
-          height: double.infinity,
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: primaryColor,
+          title: const Center(
+            child: Text(
+              "Sessions",
+              style: TextStyle(color: Colors.white, fontSize: 24),
+            ),
+          ),
         ),
-      ),
-    ),
-    Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            sessionSubheadings[index],
-            style: const TextStyle(
-              color: Colors.white,
-            ),
-          ),
-          Text(
-            sessionHeadings[index],
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
-      ),
-    ),
-  ],
-),
-
+        backgroundColor: primaryColor,
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: sessionCardNo,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        _navigateToDetailsPage(
+                          sessionSubheadings[index],
+                          sessionHeadings[index],
+                          sessionImagesList[index],
+                          sessionDescription[index],
+                        );
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            gradient: const LinearGradient(
+                              colors: [
+                                gradientColor2,
+                                gradientColor1,
+                              ],
                             ),
-                          ],
+                            border: Border.all(color: itemColor, width: 0.6),
+                            borderRadius: BorderRadius.circular(10),
+                            color: cardColor,
+                          ),
+                          height: 120,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: Stack(
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      child: Image.asset(
+                                        sessionImagesList[index],
+                                        alignment: Alignment.center,
+                                        fit: BoxFit.cover,
+                                        width: double.infinity,
+                                        height: double.infinity,
+                                      ),
+                                    ),
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      child: BackdropFilter(
+                                        filter: ImageFilter.blur(
+                                            sigmaX: 4.0, sigmaY: 4.0),
+                                        child: Container(
+                                          color: Colors.black.withOpacity(0.3),
+                                          width: double.infinity,
+                                          height: double.infinity,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(12.0),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            sessionSubheadings[index],
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          Text(
+                                            sessionHeadings[index],
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                },
-              ),
-            ],
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
