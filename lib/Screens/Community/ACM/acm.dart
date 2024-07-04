@@ -12,13 +12,15 @@ class ACM extends StatefulWidget {
 
 class _ACMState extends State<ACM> {
   void _navigateToDetailsPage(String heading, 
-      String imageUrl,) {
+      String imageUrl, String tenureDescription,) {
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => ACMDetailsPage(
+            
             heading: heading,
             imageUrl: imageUrl,
+            tenureDescription: tenureDescription,
             ),
       ),
     );
@@ -83,7 +85,7 @@ class _ACMState extends State<ACM> {
                         // acmSubheadings[index],
                         acmHeadings[index],
                         tenureImages[index],
-                        // tenureDescription[index],
+                        tenureDescription[index],
                       );
                     },
                     child: Padding(
