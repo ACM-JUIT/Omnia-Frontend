@@ -51,7 +51,7 @@ List<String> eventImages = [
 
 //.......COMMUNITY CARD VALUES........//
 
-const acmCardNo = 2;
+const acmCardNo = 1;
 
 const acmLogo = "assets/acmlogo.png";
 
@@ -60,50 +60,68 @@ const acmDescription =
     "What is ACM? Acm student chapter waknaghat comprises of several teams which help the student grow and learn of their interests and where they can excel.";
 List<String> acmHeadings = [
   "2024-25",
-  "2023-24",
+
 ];
 
 List<String> acmSubheadings = [
   "Tenure",
-  "Tenure",
+
 ];
 
 List<String> tenureImages = [
   "assets/2021.png",
-  "assets/2020.png",
+ 
 ];
 
 List<String> tenureDescription = [
   "In October, ACM-JUIT and Coding Ninjas hosted Tech-o-ween, a three-day Halloween-themed tech event. The festivities began with a Fresher’s Induction to welcome new members, followed by Code Starters, featuring a series of engaging coding challenges. The event concluded with the Domain of Secrets, an outdoor adventure set in Mughal Gardens that combined problem-solving with a thrilling atmosphere. Participants competed for rewards worth over 3k+, making Tech-o-ween a memorable blend of technology and Halloween fun." ,   
-  "The tenure of 2023-24 was a great success.",
-];
-//.......MEMBERS CARD VALUES........//
-
-const membersCardNo = 5;
-
-List<String> initials = [
-  'JD',
-  'AS',
-  'MS',
-  'LW',
-  'EJ',
+ 
 ];
 
-List<String> usernames = [
-  'john_doe',
-  'alice_smith',
-  'mark_sullivan',
-  'lisa_walker',
-  'eric_jones',
+
+//.......SESSIONS CARD VALUES.......//
+
+const sessionCardNo = 4;
+
+List<String> sessionHeadings = [
+  "Hache",
+  "Qriosity",
+  "Inside-Out",
+  "Adventum",
 ];
 
-List<String> memberImages = [
-  "assets/profile1.png",
-  "assets/profile2.png",
-  "assets/profile3.png",
-  "assets/profile4.png",
-  "assets/profile5.png",
+List<String> sessionSubheadings = [
+  "Cyber Security",
+  "Cyber Security",
+  "UI/UX",
+  "Hackathon"
 ];
+
+List<String> sessionImagesList = [
+  "assets/webdev.jpg",
+  "assets/sih.jpg",
+  "assets/aiml.jpg",
+  "assets/fintech.jpg",
+  
+];
+
+List<String> sessionDescription = [
+  "Hache, organized by JUIT, is the ultimate cybersecurity showdown where digital defenders come together to test their mettle, showcasing their skills and knowledge. It's a vibrant platform where students and professionals dive into the challenges of the digital age, participating in competitions, workshops, and expert talks. Hache is the hub for cybersecurity enthusiasts to learn, collaborate, and",
+  "Qriosity is a CTF (Capture the Flag) event where participants will be given a set of challenges to solve. The challenges will be based on various domains of Cyber Security like Web Exploitation, Cryptography, Forensics, etc. The participants will be given a flag for each challenge they solve. The participant with the maximum number of flags will be declared as the winner.",
+  "Inside-Out is a UI/UX event where participants will be given a set of challenges to solve. The challenges will be based on various domains of UI/UX like Web Designing, App Designing, etc. The participants will be given a flag for each challenge they solve. The participant with the maximum number of flags will be declared as the winner.",
+  "Adventum is a Hackathon event where participants will be given a set of challenges to solve. The challenges will be based on various domains of Cyber Security like Web Exploitation, Cryptography, Forensics, etc. The participants will be given a flag for each challenge they solve. The participant with the maximum number of flags will be declared as the winner.",
+];
+
+
+List<String> esessionImages = [
+  "assets/hache.png",
+  "assets/qriosity.png",
+  "assets/insideout.png",
+  "assets/horizon.png",
+];
+
+
+
 
 //.......PROJECTS CARD VALUES........//
 
@@ -138,3 +156,35 @@ List<String> acmImages = [
 
 
 
+
+
+
+
+
+// .......MEMBERS CARD VALUES........//
+
+// const membersCardNo = 5;
+
+// List<String> initials = [
+//   'JD',
+//   'AS',
+//   'MS',
+//   'LW',
+//   'EJ',
+// ];
+
+// List<String> usernames = [
+//   'john_doe',
+//   'alice_smith',
+//   'mark_sullivan',
+//   'lisa_walker',
+//   'eric_jones',
+// ];
+
+// List<String> memberImages = [
+//   "assets/profile1.png",
+//   "assets/profile2.png",
+//   "assets/profile3.png",
+//   "assets/profile4.png",
+//   "assets/profile5.png",
+// ];

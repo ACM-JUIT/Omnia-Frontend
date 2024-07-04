@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
 import 'package:omnia/Screens/Home/events.dart';
@@ -107,15 +109,8 @@ class _MainHomeState extends State<MainHome> {
                                           height: double.infinity,
                                         ),
                                       ),
-                                      // Align(
-                                      //   alignment: Alignment.bottomCenter,
-                                      //   child: Container(
-                                      //     color: Colors.transparent,
-                                      //     child: const SlideCountdown(
-                                      //       duration: Duration(days: 1),
-                                      //     ),
-                                      //   ),
-                                      // ),
+                                      
+                                     
                                     ],
                                   ),
                                 ),
@@ -243,6 +238,18 @@ class _MainHomeState extends State<MainHome> {
                                       height: double.infinity,
                                     ),
                                   ),
+                                  ClipRRect(
+      borderRadius: BorderRadius.circular(10.0),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
+        child: Container(
+          color: Colors.black.withOpacity(0.3), 
+          width: double.infinity,
+          height: double.infinity,
+        ),
+      ),
+    ),
+
                                   Padding(
                                     padding: const EdgeInsets.all(12.0),
                                     child: Column(

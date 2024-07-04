@@ -1,6 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
-import 'package:omnia/Screens/Community/ACM/acmevents.dart';
+import 'package:omnia/Screens/Community/ACM/acm_descrption.dart';
 import 'package:omnia/cardvalues.dart';
 
 class ACM extends StatefulWidget {
@@ -119,6 +121,17 @@ class _ACMState extends State<ACM> {
                                       height: double.infinity,
                                     ),
                                   ),
+                                  ClipRRect(
+      borderRadius: BorderRadius.circular(10.0),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 4.0, sigmaY: 4.0),
+        child: Container(
+          color: Colors.black.withOpacity(0.3), // Adjust the opacity as needed
+          width: double.infinity,
+          height: double.infinity,
+        ),
+      ),
+    ),
                                   Padding(
                                     padding: const EdgeInsets.all(12.0),
                                     child: Column(
