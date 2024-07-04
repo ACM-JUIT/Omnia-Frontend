@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
-import 'package:omnia/Screens/Community/acmevents.dart';
+import 'package:omnia/Screens/Community/ACM/acmevents.dart';
 import 'package:omnia/cardvalues.dart';
 
 class ACM extends StatefulWidget {
@@ -11,17 +11,15 @@ class ACM extends StatefulWidget {
 }
 
 class _ACMState extends State<ACM> {
-  // Function to navigate to the details page with the selected card's data
-  void _navigateToDetailsPage(String heading, String subheading,
-      String imageUrl, String tenureDescription) {
+  void _navigateToDetailsPage(String heading, 
+      String imageUrl,) {
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => ACMDetailsPage(
             heading: heading,
-            subheading: subheading,
             imageUrl: imageUrl,
-            tenureDescription: tenureDescription),
+            ),
       ),
     );
   }
@@ -41,7 +39,7 @@ class _ACMState extends State<ACM> {
                   height: 220,
                   width: 380,
                   decoration: BoxDecoration(
-                    border: Border.all(color: itemColor),
+                    border: Border.all(color: itemColor,width: 0.6),
                     borderRadius: BorderRadius.circular(10),
                     color: cardColor,
                   ),
@@ -82,10 +80,10 @@ class _ACMState extends State<ACM> {
                   return GestureDetector(
                     onTap: () {
                       _navigateToDetailsPage(
-                        acmSubheadings[index],
+                        // acmSubheadings[index],
                         acmHeadings[index],
                         tenureImages[index],
-                        tenureDescription[index],
+                        // tenureDescription[index],
                       );
                     },
                     child: Padding(
@@ -96,7 +94,8 @@ class _ACMState extends State<ACM> {
                             gradientColor2,
                             gradientColor1,
                           ]),
-                          border: Border.all(color: itemColor),
+                          border: Border.all(color: itemColor,width: 0.6),
+                          
                           borderRadius: BorderRadius.circular(10),
                           color: cardColor,
                         ),

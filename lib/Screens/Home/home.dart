@@ -45,7 +45,7 @@ class _MainHomeState extends State<MainHome> {
         ),
         centerTitle: false,
       ),
-      endDrawer: const CustomDrawer(),
+      // endDrawer: const CustomDrawer(),
       backgroundColor: primaryColor,
       body: SingleChildScrollView(
         child: Padding(
