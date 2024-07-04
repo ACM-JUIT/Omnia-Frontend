@@ -55,9 +55,7 @@ class _LoginState extends State<Login> {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        // scrolledUnderElevation: double.infinity,
-        // elevation: 0.0,
-        // forceMaterialTransparency: true,
+       
         backgroundColor: Colors.transparent,
       ),
       body: Container(
@@ -73,7 +71,6 @@ class _LoginState extends State<Login> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              // SizedBox(height: 100,),
               Container(
                 height: 148,
                 width: 558,
@@ -81,11 +78,11 @@ class _LoginState extends State<Login> {
                   image: DecorationImage(
                     alignment: Alignment.bottomCenter,
                     image: AssetImage("assets/name.png"),
-                    fit: BoxFit.contain,
+                    fit: BoxFit.scaleDown,
+                    
                   ),
                 ),
               ),
-              // SizedBox(height: 10,),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -95,11 +92,10 @@ class _LoginState extends State<Login> {
                   Row(
                     children: [
                       const SizedBox(
-                        width: 50,
+                        width: 30,
                       ),
                       Text(
                         isLoginfr ? 'Log In' : 'Register',
-                        // textAlign: TextAlign.end,
                         style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w800,
@@ -114,7 +110,7 @@ class _LoginState extends State<Login> {
                         height: 10,
                       ),
                       SizedBox(
-                        width: 380,
+                        width: 350,
                         height: 56,
                         child: TextField(
                           style: const TextStyle(color: Colors.white),
@@ -146,15 +142,14 @@ class _LoginState extends State<Login> {
                         height: 10,
                       ),
                       SizedBox(
-                        width: 380,
+                        width: 350,
                         height: 56,
                         child: TextField(
                           style: const TextStyle(color: Colors.white),
                           controller: _passk,
                           obscureText: _obscureText2,
                           decoration: InputDecoration(
-                            // fillColor: Color.fromARGB(255, 255, 0, 0),
-                            // filled: true,
+                         
                             border: const OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
                               Radius.circular(50.0),
@@ -210,12 +205,10 @@ class _LoginState extends State<Login> {
                                     fontSize: 25,
                                     fontWeight: FontWeight.w800),
                               ),
-                              // icon: const Icon(Icons.arrow_forward,
                             ),
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            // crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
                                 isLoginfr
@@ -235,7 +228,7 @@ class _LoginState extends State<Login> {
                                 child: Text(
                                   isLoginfr ? 'Sign Up' : 'Log In',
                                   style: const TextStyle(
-                                      color: Colors.purple,
+                                      color: Color.fromARGB(255, 7, 17, 156),
                                       fontSize: 13,
                                       fontWeight: FontWeight.w800),
                                 ),
