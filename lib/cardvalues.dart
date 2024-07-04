@@ -51,20 +51,19 @@ List<String> eventImages = [
 
 //.......COMMUNITY CARD VALUES........//
 
-const acmCardNo = 3;
+const acmCardNo = 2;
 
 const acmLogo = "assets/acmlogo.png";
+
 
 const acmDescription =
     "What is ACM? Acm student chapter waknaghat comprises of several teams which help the student grow and learn of their interests and where they can excel.";
 List<String> acmHeadings = [
-  "2021-22",
-  "2020-21",
-  "2019-20",
+  "2024-25",
+  "2023-24",
 ];
 
 List<String> acmSubheadings = [
-  "Tenure",
   "Tenure",
   "Tenure",
 ];
@@ -72,13 +71,11 @@ List<String> acmSubheadings = [
 List<String> tenureImages = [
   "assets/2021.png",
   "assets/2020.png",
-  "assets/2019.png",
 ];
 
 List<String> tenureDescription = [
-  "The tenure of 2021-22 is going on.",
-  "The tenure of 2020-21 was a great success.",
-  "The tenure of 2019-20 was a great success.",
+  "Upcoming",
+  "The tenure of 2023-24 was a great success.",
 ];
 //.......MEMBERS CARD VALUES........//
 
@@ -133,3 +130,11 @@ List<String> acmImages = [
   "assets/qriosity.png",
   "assets/qriosity.png",
 ];
+
+
+
+
+
+
+
+
