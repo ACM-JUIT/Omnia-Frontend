@@ -74,7 +74,7 @@ List<String> tenureImages = [
 ];
 
 List<String> tenureDescription = [
-  "Upcoming",
+  "In October, ACM-JUIT and Coding Ninjas hosted Tech-o-ween, a three-day Halloween-themed tech event. The festivities began with a Fresher’s Induction to welcome new members, followed by Code Starters, featuring a series of engaging coding challenges. The event concluded with the Domain of Secrets, an outdoor adventure set in Mughal Gardens that combined problem-solving with a thrilling atmosphere. Participants competed for rewards worth over 3k+, making Tech-o-ween a memorable blend of technology and Halloween fun." ,   
   "The tenure of 2023-24 was a great success.",
 ];
 //.......MEMBERS CARD VALUES........//

@@ -139,7 +139,6 @@ class _ProjectState extends State<Project> {
               ],
             ),
           ),
-          // Blurred background with popup
           if (_showPopupCondition)
             BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
@@ -152,5 +151,5 @@ class _ProjectState extends State<Project> {
     );
   }
   
-  bool get _showPopupCondition => true; // Placeholder for your popup condition
+  bool get _showPopupCondition => true;
 }
