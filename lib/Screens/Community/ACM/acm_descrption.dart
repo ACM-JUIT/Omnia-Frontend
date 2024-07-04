@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
 import 'package:omnia/Screens/Community/ACM/Sessions/session.dart';
@@ -112,6 +114,18 @@ class _ACMDetailsPageState extends State<ACMDetailsPage> {
                                           height: double.infinity,
                                         ),
                                       ),
+                                      ClipRRect(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      child: BackdropFilter(
+                                        filter: ImageFilter.blur(
+                                            sigmaX: 4.0, sigmaY: 4.0),
+                                        child: Container(
+                                          color: Colors.black.withOpacity(0.3),
+                                          width: double.infinity,
+                                          height: double.infinity,
+                                        ),
+                                      ),
+                                    ),
                                       const Padding(
                                         padding: EdgeInsets.all(12.0),
                                         child: Column(

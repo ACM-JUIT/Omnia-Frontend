@@ -13,7 +13,7 @@ class SessionDetailsPage extends StatefulWidget {
     required this.sessionDescription,
     required this.sessionHeadings,
     required this.sessionSubheadings,
-    required this.sessionImagesList, 
+    required this.sessionImagesList,
   }) : super(key: key);
 
   @override
@@ -21,6 +21,20 @@ class SessionDetailsPage extends StatefulWidget {
 }
 
 class _SessionDetailsPageState extends State<SessionDetailsPage> {
+  late List<String> gallery;
+
+  @override
+  void initState() {
+    super.initState();
+    gallery = [
+      'assets/appdev.jpg',
+      'assets/appdev.jpg',
+      'assets/appdev.jpg',
+      'assets/appdev.jpg',
+      'assets/appdev.jpg'
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -79,7 +93,19 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
                         ),
                       ),
                       const SizedBox(height: 20),
-                      
+                      SizedBox(
+                        height: 200,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: gallery.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Image.asset(gallery[index]),
+                            );
+                          },
+                        ),
+                      ),
                     ],
                   ),
                 ),
