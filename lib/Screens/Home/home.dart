@@ -1,10 +1,8 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
 import 'package:omnia/Screens/Home/events.dart';
 import 'package:omnia/cardvalues.dart';
-
 import 'package:url_launcher/url_launcher_string.dart';
 
 class MainHome extends StatefulWidget {
@@ -16,16 +14,17 @@ class MainHome extends StatefulWidget {
 
 class _MainHomeState extends State<MainHome> {
   void _navigateToDetailsPage(String heading, String subheading,
-      String imageUrl, String eventsDescription, String ytID) {
+      String imageUrl, String eventsDescription, List<String> eventsgallery) {
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => DetailsPage(
-            heading: heading,
-            subheading: subheading,
-            imageUrl: imageUrl,
-            eventsDescription: eventsDescription,
-            ytID: ytID),
+          heading: heading,
+          subheading: subheading,
+          imageUrl: imageUrl,
+          eventsDescription: eventsDescription,
+          eventsgallery: eventsgallery,
+        ),
       ),
     );
   }
@@ -46,13 +45,11 @@ class _MainHomeState extends State<MainHome> {
         ),
         centerTitle: false,
       ),
-      // endDrawer: const CustomDrawer(),
       backgroundColor: primaryColor,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
-            // verticalDirection: VerticalDirection.up,
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 8.0),
@@ -109,8 +106,6 @@ class _MainHomeState extends State<MainHome> {
                                           height: double.infinity,
                                         ),
                                       ),
-                                      
-                                     
                                     ],
                                   ),
                                 ),
@@ -125,8 +120,7 @@ class _MainHomeState extends State<MainHome> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     const Text(
@@ -205,7 +199,7 @@ class _MainHomeState extends State<MainHome> {
                         homeSubheadings[index],
                         homeImagesList[index],
                         eventsDescription[index],
-                        ytID[index],
+                        eventsgallery[index],
                       );
                     },
                     child: Padding(
@@ -239,23 +233,21 @@ class _MainHomeState extends State<MainHome> {
                                     ),
                                   ),
                                   ClipRRect(
-      borderRadius: BorderRadius.circular(10.0),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
-        child: Container(
-          color: Colors.black.withOpacity(0.3), 
-          width: double.infinity,
-          height: double.infinity,
-        ),
-      ),
-    ),
-
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    child: BackdropFilter(
+                                      filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
+                                      child: Container(
+                                        color: Colors.black.withOpacity(0.3),
+                                        width: double.infinity,
+                                        height: double.infinity,
+                                      ),
+                                    ),
+                                  ),
                                   Padding(
                                     padding: const EdgeInsets.all(12.0),
                                     child: Column(
                                       mainAxisAlignment: MainAxisAlignment.end,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           homeHeadings[index],
