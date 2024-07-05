@@ -13,11 +13,14 @@ class Session extends StatefulWidget {
 }
 
 class _SessionState extends State<Session> {
+  
+
   void _navigateToDetailsPage(
     String sessionHeadings,
     String sessionSubheadings,
-    String sessionImagesList,
+    String sessionPoster,
     String sessionDescription,
+    List<String> gallery,
   ) {
     Navigator.push(
       context,
@@ -25,8 +28,9 @@ class _SessionState extends State<Session> {
         builder: (context) => SessionDetailsPage(
           sessionHeadings: sessionHeadings,
           sessionSubheadings: sessionSubheadings,
-          sessionImagesList: sessionImagesList,
+          sessionPoster: sessionPoster,
           sessionDescription: sessionDescription,
+          gallery: gallery,
         ),
       ),
     );
@@ -60,10 +64,11 @@ class _SessionState extends State<Session> {
                     return GestureDetector(
                       onTap: () {
                         _navigateToDetailsPage(
-                          sessionSubheadings[index],
                           sessionHeadings[index],
-                          sessionImagesList[index],
+                          sessionSubheadings[index],
+                          sessionPoster[index],
                           sessionDescription[index],
+                          gallery[index],
                         );
                       },
                       child: Padding(
@@ -91,7 +96,7 @@ class _SessionState extends State<Session> {
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(10.0),
                                       child: Image.asset(
-                                        sessionImagesList[index],
+                                        sessionPoster[index],
                                         alignment: Alignment.center,
                                         fit: BoxFit.cover,
                                         width: double.infinity,
@@ -113,10 +118,8 @@ class _SessionState extends State<Session> {
                                     Padding(
                                       padding: const EdgeInsets.all(12.0),
                                       child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             sessionSubheadings[index],
