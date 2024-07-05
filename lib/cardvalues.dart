@@ -101,7 +101,7 @@ List<String> sessionSubheadings = [
   "JULY",
 ];
 
-List<String> sessionImagesList = [
+List<String> sessionPoster = [
   "assets/webdev.jpg",
   "assets/sih.jpg",
   "assets/aiml.jpg",
@@ -129,6 +129,26 @@ List<String> galleryImagesList = [
 
 ];
 
+final List<List<String>> gallery = [
+    [
+      'assets/appdev.jpg',
+      'assets/appdev.jpg',
+      'assets/appdev.jpg',
+      'assets/appdev.jpg',
+    ],
+    [
+      'assets/webdev.jpg',
+      'assets/webdev.jpg',
+      'assets/webdev.jpg',
+      'assets/webdev.jpg',
+    ],
+    [
+      'assets/appdev.jpg',
+      'assets/appdev.jpg',
+      'assets/appdev.jpg',
+      'assets/appdev.jpg',
+    ],
+  ];
 
 
 //.......PROJECTS CARD VALUES........//
