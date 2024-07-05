@@ -8,39 +8,34 @@ const homeImage = "assets/techoween.png";
 const registerUrl = "https://www.google.com";
 
 List<String> homeHeadings = [
-  "Hache",
+  "Smart India Hackathon",
   "Qriosity",
   "Inside-Out",
-  "Adventum",
+  "Tech-O-Ween",
 ];
 
 List<String> homeSubheadings = [
-  "Cyber Security",
+  "Hackathon",
   "Cyber Security",
   "UI/UX",
-  "Hackathon"
+  "Fun Event",
 ];
 
 List<String> homeImagesList = [
-  "assets/hache.png",
+  "assets/sih.jpg",
   "assets/qriosity.png",
   "assets/insideout.png",
-  "assets/horizon.png",
+  "assets/techoween.png",
 ];
 
 List<String> eventsDescription = [
   "Hache, organized by JUIT, is the ultimate cybersecurity showdown where digital defenders come together to test their mettle, showcasing their skills and knowledge. It's a vibrant platform where students and professionals dive into the challenges of the digital age, participating in competitions, workshops, and expert talks. Hache is the hub for cybersecurity enthusiasts to learn, collaborate, and",
   "Qriosity is a CTF (Capture the Flag) event where participants will be given a set of challenges to solve. The challenges will be based on various domains of Cyber Security like Web Exploitation, Cryptography, Forensics, etc. The participants will be given a flag for each challenge they solve. The participant with the maximum number of flags will be declared as the winner.",
   "Inside-Out is a UI/UX event where participants will be given a set of challenges to solve. The challenges will be based on various domains of UI/UX like Web Designing, App Designing, etc. The participants will be given a flag for each challenge they solve. The participant with the maximum number of flags will be declared as the winner.",
-  "Adventum is a Hackathon event where participants will be given a set of challenges to solve. The challenges will be based on various domains of Cyber Security like Web Exploitation, Cryptography, Forensics, etc. The participants will be given a flag for each challenge they solve. The participant with the maximum number of flags will be declared as the winner.",
+  "Tech-o-Ween is a Hackathon event where participants will be given a set of challenges to solve. The challenges will be based on various domains of Cyber Security like Web Exploitation, Cryptography, Forensics, etc. The participants will be given a flag for each challenge they solve. The participant with the maximum number of flags will be declared as the winner.",
 ];
 
-List<String> ytID = [
-  "https://www.youtube.com/watch?v=ZVfrwYFZzqM",
-  "https://www.youtube.com/watch?v=Yvdip9_JeAE",
-  "https://www.youtube.com/watch?v=Yvdip9_JeAE",
-  "",
-];
+
 
 List<String> eventImages = [
   "assets/hache.png",
@@ -48,6 +43,36 @@ List<String> eventImages = [
   "assets/insideout.png",
   "assets/horizon.png",
 ];
+
+
+final List<List<String>> eventsgallery = [
+    [
+      'assets/webdev/image1.jpg',
+      "assets/webdev/image2.jpg",
+      "assets/webdev/image3.jpg",
+    ],
+    [
+      'assets/ama/image1.jpg',
+      'assets/ama/image2.jpg',
+      'assets/ama/image3.jpg',
+      'assets/ama/image4.jpg',
+      'assets/ama/image5.jpg',
+    ],
+    [
+      'assets/fintech/image1.jpg',
+      'assets/fintech/image2.jpg',
+      'assets/fintech/image3.jpg',
+      'assets/fintech/image4.jpg',
+      
+    ],
+    [
+      'assets/cp/image1.jpg',
+      'assets/cp/image2.jpg',
+
+  
+    ],
+
+  ];
 
 //.......COMMUNITY CARD VALUES........//
 
