@@ -5,15 +5,17 @@ import 'package:readmore/readmore.dart';
 class SessionDetailsPage extends StatefulWidget {
   final String sessionHeadings;
   final String sessionSubheadings;
-  final String sessionImagesList;
+  final String sessionPoster;
   final String sessionDescription;
+  final List<String> gallery;
 
   const SessionDetailsPage({
     Key? key,
     required this.sessionDescription,
     required this.sessionHeadings,
     required this.sessionSubheadings,
-    required this.sessionImagesList,
+    required this.sessionPoster,
+    required this.gallery,
   }) : super(key: key);
 
   @override
@@ -26,13 +28,7 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
   @override
   void initState() {
     super.initState();
-    gallery = [
-      'assets/appdev.jpg',
-      'assets/appdev.jpg',
-      'assets/appdev.jpg',
-      'assets/appdev.jpg',
-      'assets/appdev.jpg'
-    ];
+    gallery = widget.gallery;
   }
 
   @override
@@ -44,7 +40,7 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset(widget.sessionImagesList),
+              Image.asset(widget.sessionPoster),
               const SizedBox(height: 20),
               Container(
                 width: MediaQuery.of(context).size.width * 0.9,
