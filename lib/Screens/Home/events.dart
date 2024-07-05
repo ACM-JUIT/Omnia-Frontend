@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
-import 'package:omnia/cardvalues.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:readmore/readmore.dart';
 
 class DetailsPage extends StatefulWidget {
@@ -9,7 +7,8 @@ class DetailsPage extends StatefulWidget {
   final String subheading;
   final String imageUrl;
   final String eventsDescription;
-  final String ytID;
+  final List<String> eventsgallery;
+
 
   const DetailsPage({
     Key? key,
@@ -17,7 +16,8 @@ class DetailsPage extends StatefulWidget {
     required this.subheading,
     required this.imageUrl,
     required this.eventsDescription,
-    required this.ytID,
+    required this.eventsgallery,
+
   }) : super(key: key);
 
   @override
@@ -25,27 +25,18 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
-  late YoutubePlayerController _controller;
+
+  late List<String> eventsgallery;
 
   @override
   void initState() {
     super.initState();
-    _controller = YoutubePlayerController(
-      initialVideoId: _extractVideoId(widget.ytID),
-      flags: const YoutubePlayerFlags(
-        autoPlay: false,
-      ),
-    );
-  }
-
-  String _extractVideoId(String url) {
-    final Uri uri = Uri.parse(url);
-    return YoutubePlayer.convertUrlToId(uri.toString()) ?? '';
+    eventsgallery = widget.eventsgallery;
   }
 
   @override
   Widget build(BuildContext context) {
-    int index = ytID.indexOf(widget.ytID);
+   
 
     return SafeArea(
       child: Scaffold(
@@ -104,21 +95,21 @@ class _DetailsPageState extends State<DetailsPage> {
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.01,
                       ),
-                      AspectRatio(
-                        aspectRatio: 16 / 9,
-                        child: widget.ytID.isNotEmpty
-                            ? YoutubePlayer(
-                                controller: _controller,
-                                showVideoProgressIndicator: true,
-                                progressIndicatorColor: Colors.blueAccent,
-                              )
-                            : Image.asset(
-                                eventImages[index],
-                                fit: BoxFit.cover,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.3,
-                              ),
+                      const SizedBox(height: 20),
+                      SizedBox(
+                        height: 200,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: eventsgallery.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Image.asset(eventsgallery[index]),
+                            );
+                          },
+                        ),
                       ),
+                  
                     ],
                   ),
                 ),
