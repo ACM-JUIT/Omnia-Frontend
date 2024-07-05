@@ -85,6 +85,9 @@ flutter:
     - assets/appdev/
     - assets/blockchain/
     - assets/ama/
+    - assets/techoween/
+    - assets/qrisosity/
+    - assets/sih/
  
     # - images/a_dot_ham.jpeg
 

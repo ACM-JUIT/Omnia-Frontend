@@ -46,28 +46,30 @@ List<String> eventImages = [
 
 
 final List<List<String>> eventsgallery = [
+
     [
-      'assets/webdev/image1.jpg',
-      "assets/webdev/image2.jpg",
-      "assets/webdev/image3.jpg",
-    ],
-    [
-      'assets/ama/image1.jpg',
-      'assets/ama/image2.jpg',
-      'assets/ama/image3.jpg',
-      'assets/ama/image4.jpg',
-      'assets/ama/image5.jpg',
-    ],
-    [
-      'assets/fintech/image1.jpg',
-      'assets/fintech/image2.jpg',
-      'assets/fintech/image3.jpg',
-      'assets/fintech/image4.jpg',
+      'assets/sih/image1.jpg',
+      'assets/sih/image2.jpg',
+    
       
     ],
     [
-      'assets/cp/image1.jpg',
-      'assets/cp/image2.jpg',
+      'assets/qrisosity/image1.jpg',
+      'assets/qrisosity/image2.jpg',
+      'assets/qrisosity/image3.jpg',
+      'assets/qrisosity/image4.jpg',
+    ],
+    
+    [
+      "assets/insideout/image1.jpg",
+      "assets/insideout/image2.jpg",
+      "assets/insideout/image3.jpg",
+      "assets/insideout/image4.jpg",
+    ],
+    [
+      'assets/techoween/image1.jpg',
+      'assets/techoween/image2.jpg',
+      'assets/techoween/image3.jpg',
 
   
     ],
