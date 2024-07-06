@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
 import 'package:omnia/Screens/Home/events.dart';
+import 'package:omnia/Screens/Menu/menu.dart';
 import 'package:omnia/cardvalues.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -32,6 +33,7 @@ class _MainHomeState extends State<MainHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: const Menu(),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         iconTheme: const IconThemeData(color: Colors.white),
