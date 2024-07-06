@@ -101,7 +101,7 @@ class _MainHomeState extends State<MainHome> {
                                       ClipRRect(
                                         borderRadius: BorderRadius.circular(10.0),
                                         child: Image.asset(
-                                          homeImage,
+                                          upcomingImage,
                                           alignment: Alignment.center,
                                           fit: BoxFit.cover,
                                           width: double.infinity,
