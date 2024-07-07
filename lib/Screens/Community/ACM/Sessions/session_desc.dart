@@ -49,7 +49,7 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -67,24 +67,31 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
                       ),
                       Align(
                         alignment: Alignment.topLeft,
-                        child: ReadMoreText(
-                          widget.sessionDescription,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w400,
-                          ),
-                          trimLines: 5,
-                          colorClickableText: navColor,
-                          trimMode: TrimMode.Length,
-                          trimCollapsedText: 'Read more',
-                          trimExpandedText: 'Read less',
-                          moreStyle: const TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          lessStyle: const TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: ReadMoreText(
+                            widget.sessionDescription,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                              height: 1.5,
+                              color: Colors.black87,
+                            ),
+                            trimLines: 5,
+                            colorClickableText: navColor,
+                            trimMode: TrimMode.Length,
+                            trimCollapsedText: 'Read more',
+                            trimExpandedText: 'Read less',
+                            moreStyle: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blue,
+                            ),
+                            lessStyle: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blue,
+                            ),
                           ),
                         ),
                       ),
