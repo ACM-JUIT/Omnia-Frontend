@@ -14,8 +14,8 @@ class MainHome extends StatefulWidget {
 }
 
 class _MainHomeState extends State<MainHome> {
-  void _navigateToDetailsPage(String heading, String subheading,
-      String imageUrl, String eventsDescription, List<String> eventsgallery) {
+  void _navigateToDetailsPage(String heading, String subheading, String imageUrl,
+      String eventsDescription, List<String> eventsgallery) {
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -191,7 +191,7 @@ class _MainHomeState extends State<MainHome> {
               ),
               ListView.builder(
                 shrinkWrap: true,
-                reverse: false,
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: homeCardNo,
                 itemBuilder: (context, index) {
                   return GestureDetector(
