@@ -45,31 +45,31 @@ class MyHomePage extends StatelessWidget {
         child: Container(
           color: Colors.black.withOpacity(0.3),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(
-                height: 300,
+                height: 350,
               ),
               Column(
                 children: [
-                  TextButton.icon(
-                    style: const ButtonStyle(
-                      alignment: Alignment.center,
-                      iconSize: WidgetStatePropertyAll<double>(75),
-                      foregroundColor:
-                          WidgetStatePropertyAll<Color>(Colors.white),
+                  Center(
+                    child: TextButton.icon(
+                      style: const ButtonStyle(
+                        alignment: Alignment.center,
+                        iconSize: WidgetStatePropertyAll<double>(75),
+                        foregroundColor:
+                            WidgetStatePropertyAll<Color>(Colors.white),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const WidgetTREEE(),
+                          ),
+                        );
+                      },
+                      icon: const Icon(Icons.touch_app),
+                      label: const Text(''),
                     ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const WidgetTREEE(),
-                        ),
-                      );
-                    },
-                    icon: const Icon(Icons.touch_app),
-                    label: const Text(''),
                   ),
                   const Text(
                     'Tap',
@@ -81,7 +81,7 @@ class MyHomePage extends StatelessWidget {
                 ],
               ),
               const SizedBox(
-                height: 100,
+                height: 160,
               ),
               Container(
                 height: 76,

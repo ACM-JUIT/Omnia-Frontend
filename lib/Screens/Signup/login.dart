@@ -55,7 +55,6 @@ class _LoginState extends State<Login> {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-       
         backgroundColor: Colors.transparent,
       ),
       body: Container(
@@ -79,7 +78,6 @@ class _LoginState extends State<Login> {
                     alignment: Alignment.bottomCenter,
                     image: AssetImage("assets/name.png"),
                     fit: BoxFit.scaleDown,
-                    
                   ),
                 ),
               ),
@@ -120,13 +118,17 @@ class _LoginState extends State<Login> {
                                 borderRadius: BorderRadius.all(
                               Radius.circular(50.0),
                             )),
-                            prefixIcon: const Icon(Icons.email_outlined,
-                                color: Colors.white),
+                            prefixIcon: const Padding(
+                              padding: EdgeInsets.only(left: 14.0), 
+                              child: Icon(Icons.email_outlined,
+                                  color: Colors.white),
+                            ),
                             hintText: isLoginfr
                                 ? 'Log-In Using Email ID'
                                 : 'Register Using Email ID',
                             hintStyle: const TextStyle(
-                                fontWeight: FontWeight.w300,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
                                 color: Colors.white),
                             enabledBorder: const OutlineInputBorder(
                               borderSide:
@@ -149,17 +151,20 @@ class _LoginState extends State<Login> {
                           controller: _passk,
                           obscureText: _obscureText2,
                           decoration: InputDecoration(
-                         
                             border: const OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
                               Radius.circular(50.0),
                             )),
-                            prefixIcon: const Icon(Icons.lock_person_outlined,
-                                color: Colors.white),
+                            prefixIcon: const Padding(
+                              padding: EdgeInsets.only(left: 14.0), // Add padding here
+                              child: Icon(Icons.lock_person_outlined,
+                                  color: Colors.white),
+                            ),
                             hintText:
                                 isLoginfr ? 'Password' : 'Create Password',
                             hintStyle: const TextStyle(
-                                fontWeight: FontWeight.w300,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
                                 color: Colors.white),
                             enabledBorder: const OutlineInputBorder(
                               borderSide:
@@ -168,18 +173,21 @@ class _LoginState extends State<Login> {
                                 Radius.circular(50.0),
                               ),
                             ),
-                            suffixIcon: IconButton(
-                              icon: Icon(
-                                _obscureText2
-                                    ? Icons.visibility_off
-                                    : Icons.visibility,
-                                color: Colors.white,
+                            suffixIcon: Padding(
+                              padding: const EdgeInsets.only(right: 12.0), // Add padding here
+                              child: IconButton(
+                                icon: Icon(
+                                  _obscureText2
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
+                                  color: Colors.white,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    _obscureText2 = !_obscureText2;
+                                  });
+                                },
                               ),
-                              onPressed: () {
-                                setState(() {
-                                  _obscureText2 = !_obscureText2;
-                                });
-                              },
                             ),
                           ),
                         ),
