@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
 import 'package:omnia/Screens/Home/events.dart';
+import 'package:omnia/Screens/Menu/menu.dart';
 import 'package:omnia/cardvalues.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -13,8 +14,8 @@ class MainHome extends StatefulWidget {
 }
 
 class _MainHomeState extends State<MainHome> {
-  void _navigateToDetailsPage(String heading, String subheading,
-      String imageUrl, String eventsDescription, List<String> eventsgallery) {
+  void _navigateToDetailsPage(String heading, String subheading, String imageUrl,
+      String eventsDescription, List<String> eventsgallery) {
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -32,6 +33,7 @@ class _MainHomeState extends State<MainHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: const Menu(),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         iconTheme: const IconThemeData(color: Colors.white),
@@ -99,7 +101,7 @@ class _MainHomeState extends State<MainHome> {
                                       ClipRRect(
                                         borderRadius: BorderRadius.circular(10.0),
                                         child: Image.asset(
-                                          homeImage,
+                                          upcomingImage,
                                           alignment: Alignment.center,
                                           fit: BoxFit.cover,
                                           width: double.infinity,
@@ -189,7 +191,7 @@ class _MainHomeState extends State<MainHome> {
               ),
               ListView.builder(
                 shrinkWrap: true,
-                reverse: false,
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: homeCardNo,
                 itemBuilder: (context, index) {
                   return GestureDetector(

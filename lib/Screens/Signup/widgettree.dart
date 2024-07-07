@@ -1,6 +1,6 @@
 import 'package:omnia/Screens/Signup/auth.dart';
 import 'package:omnia/Screens/Signup/login.dart';
-import 'package:omnia/Screens/Home/homescreen.dart';
+import 'package:omnia/Screens/navbar.dart/navbar.dart';
 import 'package:flutter/material.dart';
 
 
@@ -18,7 +18,7 @@ class _WidgetTREEEState extends State<WidgetTREEE> {
       stream: Auth().authStateChanges, 
       builder: ((context, snapshot) {
         if (snapshot.hasData){
-          return const HomeScreen();
+          return const Nav();
         } else {
           return const Login();
         }

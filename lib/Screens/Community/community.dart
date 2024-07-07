@@ -3,7 +3,7 @@ import 'package:omnia/Resources/Theme/theme.dart';
 import 'package:omnia/Screens/Community/ACM/acm.dart';
 import 'package:omnia/Screens/Community/Council/council.dart';
 // import 'package:omnia/Screens/Home/home.dart';
-import 'package:omnia/Screens/Home/homescreen.dart';
+import 'package:omnia/Screens/navbar.dart/navbar.dart';
 
 class Community extends StatelessWidget {
   const Community({super.key});
@@ -23,7 +23,7 @@ class Community extends StatelessWidget {
               icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const HomeScreen();
+                  return const Nav();
                 }));
               },
             ),
