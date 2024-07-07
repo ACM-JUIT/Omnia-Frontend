@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
 import 'package:omnia/Screens/Community/ACM/Sessions/session.dart';
@@ -40,7 +39,7 @@ class _ACMDetailsPageState extends State<ACMDetailsPage> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -58,40 +57,52 @@ class _ACMDetailsPageState extends State<ACMDetailsPage> {
                       ),
                       Align(
                         alignment: Alignment.topLeft,
-                        child: ReadMoreText(
-                          widget.tenureDescription,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w400,
-                          ),
-                          trimLines: 5,
-                          colorClickableText: navColor,
-                          trimMode: TrimMode.Length,
-                          trimCollapsedText: 'Read more',
-                          trimExpandedText: 'Read less',
-                          moreStyle: const TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          lessStyle: const TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: ReadMoreText(
+                            widget.tenureDescription,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                              height: 1.5,
+                              color: Colors.black87,
+                            ),
+                            trimLines: 5,
+                            colorClickableText: navColor,
+                            trimMode: TrimMode.Length,
+                            trimCollapsedText: 'Read more',
+                            trimExpandedText: 'Read less',
+                            moreStyle: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blue,
+                            ),
+                            lessStyle: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blue,
+                            ),
                           ),
                         ),
                       ),
                       const SizedBox(height: 20),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const Session()));
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const Session()),
+                          );
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
                             decoration: BoxDecoration(
-                              gradient: const LinearGradient(colors: [
-                                gradientColor2,
-                                gradientColor1,
-                              ]),
+                              gradient: const LinearGradient(
+                                colors: [
+                                  gradientColor2,
+                                  gradientColor1,
+                                ],
+                              ),
                               border: Border.all(color: itemColor, width: 0.6),
                               borderRadius: BorderRadius.circular(10),
                               color: cardColor,
@@ -115,23 +126,21 @@ class _ACMDetailsPageState extends State<ACMDetailsPage> {
                                         ),
                                       ),
                                       ClipRRect(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      child: BackdropFilter(
-                                        filter: ImageFilter.blur(
-                                            sigmaX: 4.0, sigmaY: 4.0),
-                                        child: Container(
-                                          color: Colors.black.withOpacity(0.3),
-                                          width: double.infinity,
-                                          height: double.infinity,
+                                        borderRadius: BorderRadius.circular(10.0),
+                                        child: BackdropFilter(
+                                          filter: ImageFilter.blur(sigmaX: 4.0, sigmaY: 4.0),
+                                          child: Container(
+                                            color: Colors.black.withOpacity(0.3),
+                                            width: double.infinity,
+                                            height: double.infinity,
+                                          ),
                                         ),
                                       ),
-                                    ),
                                       const Padding(
                                         padding: EdgeInsets.all(12.0),
                                         child: Column(
                                           mainAxisAlignment: MainAxisAlignment.end,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             Text(
                                               "2024-2025",

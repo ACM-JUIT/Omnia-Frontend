@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
-import 'package:omnia/Screens/Home/events.dart';
+import 'package:omnia/Screens/Home/events_desc.dart';
 import 'package:omnia/Screens/Menu/menu.dart';
 import 'package:omnia/cardvalues.dart';
 import 'package:url_launcher/url_launcher_string.dart';

@@ -9,7 +9,6 @@ class DetailsPage extends StatefulWidget {
   final String eventsDescription;
   final List<String> eventsgallery;
 
-
   const DetailsPage({
     Key? key,
     required this.heading,
@@ -17,7 +16,6 @@ class DetailsPage extends StatefulWidget {
     required this.imageUrl,
     required this.eventsDescription,
     required this.eventsgallery,
-
   }) : super(key: key);
 
   @override
@@ -25,7 +23,6 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
-
   late List<String> eventsgallery;
 
   @override
@@ -36,8 +33,6 @@ class _DetailsPageState extends State<DetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-   
-
     return SafeArea(
       child: Scaffold(
         backgroundColor: navColor,
@@ -53,16 +48,18 @@ class _DetailsPageState extends State<DetailsPage> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: Column(
                     children: [
                       Align(
                         alignment: Alignment.topLeft,
-                        child: Text(
-                          widget.heading,
-                          style: const TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
+                        child: Center(
+                          child: Text(
+                            widget.heading,
+                            style: const TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
@@ -71,24 +68,33 @@ class _DetailsPageState extends State<DetailsPage> {
                       ),
                       Align(
                         alignment: Alignment.topLeft,
-                        child: ReadMoreText(
-                          widget.eventsDescription,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w400,
-                          ),
-                          trimLines: 5,
-                          colorClickableText: navColor,
-                          trimMode: TrimMode.Length,
-                          trimCollapsedText: 'Read more',
-                          trimExpandedText: 'Read less',
-                          moreStyle: const TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          lessStyle: const TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Center(
+                            child: ReadMoreText(
+                              widget.eventsDescription,
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w400,
+                                height: 1.5,
+                                color: Colors.black87,
+                              ),
+                              trimLines: 5,
+                              colorClickableText: navColor,
+                              trimMode: TrimMode.Length,
+                              trimCollapsedText: 'Read more',
+                              trimExpandedText: 'Read less',
+                              moreStyle: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.blue,
+                              ),
+                              lessStyle: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.blue,
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -109,7 +115,6 @@ class _DetailsPageState extends State<DetailsPage> {
                           },
                         ),
                       ),
-                  
                     ],
                   ),
                 ),
