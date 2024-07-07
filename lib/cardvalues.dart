@@ -3,7 +3,7 @@
 const setDate = "10-05-2024";
 const homeCardNo = 4;
 
-const upcomingImage = "assets/techoween.png";
+// const upcomingImage = "assets/techoween.png";
 
 const registerUrl = "https://www.google.com";
 

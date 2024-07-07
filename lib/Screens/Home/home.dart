@@ -14,6 +14,8 @@ class MainHome extends StatefulWidget {
 }
 
 class _MainHomeState extends State<MainHome> {
+  String upcomingImageUrl = "https://firebasestorage.googleapis.com/v0/b/omnia-acm.appspot.com/o/Upcoming%20Events%2FTechoween.png?alt=media&token=6972ace8-67b1-46ac-9ab4-541b141b816a";
+
   void _navigateToDetailsPage(String heading, String subheading, String imageUrl,
       String eventsDescription, List<String> eventsgallery) {
     Navigator.push(
@@ -29,8 +31,6 @@ class _MainHomeState extends State<MainHome> {
       ),
     );
   }
-
-  final List<bool> _isExpandedList = List.generate(homeCardNo, (index) => false);
 
   @override
   Widget build(BuildContext context) {
@@ -102,8 +102,8 @@ class _MainHomeState extends State<MainHome> {
                                     children: [
                                       ClipRRect(
                                         borderRadius: BorderRadius.circular(10.0),
-                                        child: Image.asset(
-                                          upcomingImage,
+                                        child: Image.network(
+                                          upcomingImageUrl,
                                           alignment: Alignment.center,
                                           fit: BoxFit.cover,
                                           width: double.infinity,
@@ -167,7 +167,7 @@ class _MainHomeState extends State<MainHome> {
                                 ),
                                 const SizedBox(height: 10),
                                 const Text(
-                                  "In October's spirit, screens ignite Coding, spooks, and thrills unit...",
+                                  "A Halloween themed tech event",
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                     color: Colors.white,
@@ -222,11 +222,12 @@ class _MainHomeState extends State<MainHome> {
                           borderRadius: BorderRadius.circular(10),
                           color: cardColor,
                         ),
+                        height: 120,
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(
-                              height: 120,
+                            Expanded(
                               child: Stack(
                                 children: [
                                   ClipRRect(
@@ -250,57 +251,27 @@ class _MainHomeState extends State<MainHome> {
                                       ),
                                     ),
                                   ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    homeHeadings[index],
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    homeSubheadings[index],
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  if (_isExpandedList[index])
-                                    Text(
-                                      eventsDescription[index],
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    )
-                                  else
-                                    Text(
-                                      eventsDescription[index],
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 2,
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  InkWell(
-                                    onTap: () {
-                                      setState(() {
-                                        _isExpandedList[index] = !_isExpandedList[index];
-                                      });
-                                    },
-                                    child: Text(
-                                      _isExpandedList[index] ? "Read less" : "Read more",
-                                      style: const TextStyle(
-                                        color: Colors.blue,
-                                        decoration: TextDecoration.underline,
-                                      ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(12.0),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          homeHeadings[index],
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text(
+                                          homeSubheadings[index],
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ],
