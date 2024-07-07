@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
-import 'package:omnia/Screens/Home/homescreen.dart';
+import 'package:omnia/Screens/navbar.dart/navbar.dart';
 import 'package:omnia/Screens/Work/Projects/projects.dart';
 import 'package:omnia/Screens/Work/Resources/reso.dart';
 
@@ -24,7 +24,7 @@ class Work extends StatelessWidget {
               icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const HomeScreen();
+                  return const Nav();
                 }));
               },
             ),

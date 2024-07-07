@@ -79,6 +79,7 @@ class _ACMState extends State<ACM> {
               ),
               ListView.builder(
                 shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: acmCardNo,
                 itemBuilder: (context, index) {
                   return GestureDetector(
