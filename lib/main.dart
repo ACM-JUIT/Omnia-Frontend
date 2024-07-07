@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: MyHomePage(),
+      
     );
   }
 }
@@ -31,6 +32,7 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body: Container(
         height: 1864,
         width: double.infinity,
