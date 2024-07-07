@@ -139,7 +139,7 @@ class _MainHomeState extends State<MainHome> {
                                         launchUrlString(registerUrl);
                                       },
                                       child: Container(
-                                        height: 20,
+                                        height: 22,
                                         width: 80,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: itemColor),
@@ -147,11 +147,15 @@ class _MainHomeState extends State<MainHome> {
                                           color: dateColor,
                                         ),
                                         child: const Center(
-                                          child: Text(
-                                            "Register",
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 12,
+                                          child: Padding(
+                                            padding: EdgeInsets.all(1.0),
+                                            child: Text(
+                                              "Register",
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.white,
+                                                fontSize: 12,
+                                              ),
                                             ),
                                           ),
                                         ),
