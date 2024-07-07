@@ -30,6 +30,8 @@ class _MainHomeState extends State<MainHome> {
     );
   }
 
+  final List<bool> _isExpandedList = List.generate(homeCardNo, (index) => false);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -220,12 +222,11 @@ class _MainHomeState extends State<MainHome> {
                           borderRadius: BorderRadius.circular(10),
                           color: cardColor,
                         ),
-                        height: 120,
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Expanded(
+                            SizedBox(
+                              height: 120,
                               child: Stack(
                                 children: [
                                   ClipRRect(
@@ -249,27 +250,57 @@ class _MainHomeState extends State<MainHome> {
                                       ),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(12.0),
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          homeHeadings[index],
-                                          style: const TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        Text(
-                                          homeSubheadings[index],
-                                          style: const TextStyle(
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ],
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    homeHeadings[index],
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    homeSubheadings[index],
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  if (_isExpandedList[index])
+                                    Text(
+                                      eventsDescription[index],
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    )
+                                  else
+                                    Text(
+                                      eventsDescription[index],
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 2,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        _isExpandedList[index] = !_isExpandedList[index];
+                                      });
+                                    },
+                                    child: Text(
+                                      _isExpandedList[index] ? "Read less" : "Read more",
+                                      style: const TextStyle(
+                                        color: Colors.blue,
+                                        decoration: TextDecoration.underline,
+                                      ),
                                     ),
                                   ),
                                 ],
