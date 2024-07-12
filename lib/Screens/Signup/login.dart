@@ -14,6 +14,7 @@ class _LoginState extends State<Login> {
   bool _obscureText2 = true;
   final TextEditingController _email = TextEditingController();
   final TextEditingController _passk = TextEditingController();
+  final TextEditingController _name = TextEditingController();
   String? errortext = '';
   bool isLoginfr = true;
 
@@ -107,6 +108,41 @@ class _LoginState extends State<Login> {
                       const SizedBox(
                         height: 10,
                       ),
+                      if (!isLoginfr)
+                        SizedBox(
+                          width: 350,
+                          height: 56,
+                          child: TextField(
+                            style: const TextStyle(color: Colors.white),
+                            controller: _name,
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                Radius.circular(50.0),
+                              )),
+                              prefixIcon: Padding(
+                                padding: EdgeInsets.only(left: 14.0),
+                                child: Icon(Icons.person_outline,
+                                    color: Colors.white),
+                              ),
+                              hintText: 'Enter Name',
+                              hintStyle: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(width: 2, color: Colors.white),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(50.0),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       SizedBox(
                         width: 350,
                         height: 56,
@@ -119,7 +155,7 @@ class _LoginState extends State<Login> {
                               Radius.circular(50.0),
                             )),
                             prefixIcon: const Padding(
-                              padding: EdgeInsets.only(left: 14.0), 
+                              padding: EdgeInsets.only(left: 14.0),
                               child: Icon(Icons.email_outlined,
                                   color: Colors.white),
                             ),
