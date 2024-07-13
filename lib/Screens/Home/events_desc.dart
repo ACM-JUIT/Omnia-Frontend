@@ -1,3 +1,4 @@
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
 import 'package:readmore/readmore.dart';
@@ -23,13 +24,24 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
+  late PageController _pageController;
+  int _currentPage = 0;
   late List<String> eventsgallery;
 
   @override
   void initState() {
     super.initState();
+    _pageController = PageController(initialPage: 0);
     eventsgallery = widget.eventsgallery;
   }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -104,15 +116,55 @@ class _DetailsPageState extends State<DetailsPage> {
                       const SizedBox(height: 20),
                       SizedBox(
                         height: 200,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: eventsgallery.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Image.asset(eventsgallery[index]),
-                            );
-                          },
+                        child: Stack(
+                          alignment: Alignment.bottomCenter,
+                          children: [
+                            PageView.builder(
+                              controller: _pageController,
+                              itemCount: widget.eventsgallery.length,
+                              onPageChanged: (index) {
+                                setState(() {
+                                  _currentPage = index;
+                                });
+                              },
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                  child: Card(
+                                    elevation: 6,
+                                    shadowColor: const Color.fromARGB(255, 139, 138, 138),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(5),
+                                      child: Image.asset(
+                                        widget.eventsgallery[index],
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                            Positioned(
+                              bottom: 10,
+                              child: DotsIndicator(
+                                dotsCount: widget.eventsgallery.length,
+                                position: _currentPage,
+                                decorator: DotsDecorator(
+                                  color: Colors.grey, 
+                                  activeColor: Colors.blue, 
+                                  size: const Size.square(9.0),
+                                  activeSize: const Size(18.0, 9.0),
+                                  spacing: const EdgeInsets.symmetric(horizontal: 4.0),
+                                  activeShape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],

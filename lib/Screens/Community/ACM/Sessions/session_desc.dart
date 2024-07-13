@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
 import 'package:readmore/readmore.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 
 class SessionDetailsPage extends StatefulWidget {
   final String sessionHeadings;
@@ -23,12 +24,19 @@ class SessionDetailsPage extends StatefulWidget {
 }
 
 class _SessionDetailsPageState extends State<SessionDetailsPage> {
-  late List<String> gallery;
+  late PageController _pageController;
+  int _currentPage = 0;
 
   @override
   void initState() {
     super.initState();
-    gallery = widget.gallery;
+    _pageController = PageController(initialPage: 0);
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 
   @override
@@ -98,15 +106,55 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
                       const SizedBox(height: 20),
                       SizedBox(
                         height: 200,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: gallery.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Image.asset(gallery[index]),
-                            );
-                          },
+                        child: Stack(
+                          alignment: Alignment.bottomCenter,
+                          children: [
+                            PageView.builder(
+                              controller: _pageController,
+                              itemCount: widget.gallery.length,
+                              onPageChanged: (index) {
+                                setState(() {
+                                  _currentPage = index;
+                                });
+                              },
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                  child: Card(
+                                    elevation: 6,
+                                    shadowColor: const Color.fromARGB(255, 139, 138, 138),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(5),
+                                      child: Image.asset(
+                                        widget.gallery[index],
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                            Positioned(
+                              bottom: 10,
+                              child: DotsIndicator(
+                                dotsCount: widget.gallery.length,
+                                position: _currentPage,
+                                decorator: DotsDecorator(
+                                  color: Colors.grey, 
+                                  activeColor: Colors.blue, 
+                                  size: const Size.square(9.0),
+                                  activeSize: const Size(18.0, 9.0),
+                                  spacing: const EdgeInsets.symmetric(horizontal: 4.0),
+                                  activeShape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
