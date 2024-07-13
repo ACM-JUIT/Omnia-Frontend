@@ -50,13 +50,13 @@ class _CouncilState extends State<Council> {
               ),
               // Custom card 4
               _buildCard(
-                heading: 'Vidushi Diwedi',
+                heading: 'Vidushi Dwivedi',
                 subheading: 'Treasurer',
                 imagePath: 'assets/profile4.png',
               ),
               // Custom card 5
               _buildCard(
-                heading: 'Yatharth Singh',
+                heading: 'Yatharth',
                 subheading: 'Secretary',
                 imagePath: 'assets/profile5.png',
               ),
