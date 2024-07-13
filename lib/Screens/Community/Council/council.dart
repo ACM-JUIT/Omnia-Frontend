@@ -15,51 +15,58 @@ class _CouncilState extends State<Council> {
      
       body: Container(
         color: navColor,
-        child: Column(
-          children: <Widget>[
-            const Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Center(
-                child: Text(
-                  'Council Members',
-                  style: TextStyle(
-                    color: itemColor,
-                    fontSize: 24,
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Center(
+                  child: Text(
+                    'Council Members',
+                    style: TextStyle(
+                      color: itemColor,
+                      fontSize: 24,
+                    ),
                   ),
                 ),
               ),
-            ),
-            // Custom card 1
-            _buildCard(
-              heading: 'Chairperson',
-              subheading: 'Position 1',
-              imagePath: 'assets/profile1.png',
-            ),
-            // Custom card 2
-            _buildCard(
-              heading: 'Vice Chairperson',
-              subheading: 'Position 2',
-              imagePath: 'assets/profile2.png',
-            ),
-            // Custom card 3
-            _buildCard(
-              heading: 'Webmaster',
-              subheading: 'Position 3',
-              imagePath: 'assets/profile3.png',
-            ),
-            // Custom card 4
-            _buildCard(
-              heading: 'Treasurer',
-              subheading: 'Position 4',
-              imagePath: 'assets/profile4.png',
-            ),
-            // Custom card 5
-            _buildCard(
-              heading: 'Secretary',
-              subheading: 'Position 5',
-              imagePath: 'assets/profile5.png',
-            ),
-          ],
+              // Custom card 1
+              _buildCard(
+                heading: 'Ritwija Deep',
+                subheading: 'Chairperson',
+                imagePath: 'assets/profile1.png',
+              ),
+              // Custom card 2
+              _buildCard(
+                heading: 'Shashank Singh',
+                subheading: 'Vice Chairperson',
+                imagePath: 'assets/profile2.png',
+              ),
+              // Custom card 3
+              _buildCard(
+                heading: 'Manas Bajpai',
+                subheading: 'Webmaster',
+                imagePath: 'assets/profile3.png',
+              ),
+              // Custom card 4
+              _buildCard(
+                heading: 'Vidushi Dwivedi',
+                subheading: 'Treasurer',
+                imagePath: 'assets/profile4.png',
+              ),
+              // Custom card 5
+              _buildCard(
+                heading: 'Yatharth',
+                subheading: 'Secretary',
+                imagePath: 'assets/profile5.png',
+              ),
+              _buildCard(
+                heading: 'Vidhi Jaiswal',
+                subheading: 'Creative Head',
+                imagePath: 'assets/profile2.png',
+              ),
+            ],
+          ),
         ),
       ),
     );
