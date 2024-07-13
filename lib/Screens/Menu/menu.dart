@@ -3,7 +3,7 @@ import 'package:omnia/Resources/Theme/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Menu extends StatelessWidget {
-  const Menu({super.key});
+  const Menu({super.key, });
 
   @override
   Widget build(BuildContext context) {
@@ -12,49 +12,101 @@ class Menu extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           Container(
-            decoration: const BoxDecoration(
-              color: itemColor,
-            ),
-            child: const DrawerHeader(
-              decoration: BoxDecoration(
-                color: primaryColor,
+            color: Colors.blue, // Replace with your color
+            child: DrawerHeader(
+              decoration: const BoxDecoration(
+                color: primaryColor, // Replace with your color
               ),
               child: Center(
-                child: Text(
-                  'Social Media',
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.white,
-                  ),
+                child: Image.asset(
+                  "assets/acmlogo.png",
+                  height: 200,
+                  width: 200,
                 ),
               ),
             ),
           ),
-         
           ListTile(
-            leading: const Icon(Icons.facebook),
-            title: const Text('Facebook'),
-            onTap: () => _launchURL('https://www.facebook.com'),
+            leading: Image.asset("assets/linkedin.png", height: 26, width: 26),
+            title: const Text(' LinkedIn'),
+            onTap: () => _launchURL('https://www.linkedin.com/company/acmjuit/mycompany/'),
           ),
           ListTile(
-            leading: const Icon(Icons.transfer_within_a_station_rounded),
-            title: const Text('Twitter'),
-            onTap: () => _launchURL('https://www.twitter.com'),
+            leading: Image.asset("assets/insta.png", height: 26, width: 26),
+            title: const Text(' Instagram'),
+            onTap: () => _launchURL('https://www.instagram.com/acmjuit/'),
           ),
           ListTile(
-            leading: const Icon(Icons.linked_camera_outlined),
-            title: const Text('LinkedIn'),
-            onTap: () => _launchURL('https://www.linkedin.com'),
+            leading: Image.asset("assets/x3.png", height: 26, width: 26),
+            title: const Text(' Twitter'),
+            onTap: () => _launchURL('https://x.com/AcmJuit'),
           ),
           ListTile(
-            leading: const Icon(Icons.insert_page_break_rounded),
-            title: const Text('Instagram'),
-            onTap: () => _launchURL('https://www.instagram.com'),
+            leading: Image.asset("assets/mail.png", height: 27, width: 27),
+            title: const Text(' Email'),
+            onTap: () => _launchURL('mailto:acm@juitsolan.in'),
           ),
           ListTile(
-            leading: const Icon(Icons.youtube_searched_for),
-            title: const Text('YouTube'),
-            onTap: () => _launchURL('https://www.youtube.com'),
+            leading: Image.asset("assets/git.png",height: 30, width: 30),
+            title: const Text('Github'),
+            onTap: () => _launchURL('https://github.com/ACM-JUIT/'),
+          ),
+          const SizedBox(height: 10.0),
+          const Divider(),
+          const SizedBox(height: 160.0),
+          Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                    'Made by ',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.0,
+                      color: Colors.grey[600],
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                GestureDetector(
+                  onTap: () => _launchURL('https://www.linkedin.com/in/antrimo/'), // Replace with Kartikey's URL
+                  child: const Text(
+                    ' Kartikey',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.0,
+                      color: Color.fromARGB(255, 88, 88, 88),
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                ),
+  
+                Text(
+                    ' and',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.0,
+                      color: Colors.grey[600],
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ), // Adjust spacing as needed
+                GestureDetector(
+                  onTap: () => _launchURL('https://www.linkedin.com/in/aditya-kumar-a215k/'), // Replace with Aditya's URL
+                  child: const Text(
+                    ' Aditya',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.0,
+                      color: Color.fromARGB(255, 80, 79, 79),
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
 import 'package:readmore/readmore.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 
 class DetailsPage extends StatefulWidget {
   final String heading;
@@ -23,21 +24,45 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
-  late List<String> eventsgallery;
+  late PageController _pageController;
+  int _currentPage = 0;
 
   @override
   void initState() {
     super.initState();
-    eventsgallery = widget.eventsgallery;
+    _pageController = PageController(initialPage: 0);
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  void _showImageFullscreen(String imageUrl) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          child: GestureDetector(
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+            child: Image.asset(imageUrl),
+          ),
+        );
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: navColor,
+        backgroundColor: navColor, // Adjust background color if needed
         body: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset(widget.imageUrl),
               const SizedBox(height: 20),
@@ -80,39 +105,71 @@ class _DetailsPageState extends State<DetailsPage> {
                                 color: Colors.black87,
                               ),
                               trimLines: 5,
-                              colorClickableText: navColor,
+                              colorClickableText: Colors.blue,
                               trimMode: TrimMode.Length,
                               trimCollapsedText: 'Read more',
                               trimExpandedText: 'Read less',
-                              moreStyle: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.blue,
-                              ),
-                              lessStyle: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.blue,
-                              ),
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.01,
-                      ),
                       const SizedBox(height: 20),
                       SizedBox(
                         height: 200,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: eventsgallery.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Image.asset(eventsgallery[index]),
-                            );
-                          },
+                        child: Stack(
+                          alignment: Alignment.bottomCenter,
+                          children: [
+                            PageView.builder(
+                              controller: _pageController,
+                              itemCount: widget.eventsgallery.length,
+                              onPageChanged: (index) {
+                                setState(() {
+                                  _currentPage = index;
+                                });
+                              },
+                              itemBuilder: (context, index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    _showImageFullscreen(widget.eventsgallery[index]);
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                    child: Card(
+                                      elevation: 11.0,
+                                      shadowColor: const Color.fromARGB(255, 14, 13, 13),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Image.asset(
+                                          widget.eventsgallery[index],
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                            Positioned(
+                              bottom: 10,
+                              child: DotsIndicator(
+                                dotsCount: widget.eventsgallery.length,
+                                position: _currentPage,
+                                decorator: DotsDecorator(
+                                  color: Colors.grey,
+                                  activeColor: Colors.blue,
+                                  size: const Size.square(9.0),
+                                  activeSize: const Size(18.0, 9.0),
+                                  spacing: const EdgeInsets.symmetric(horizontal: 4.0),
+                                  activeShape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
