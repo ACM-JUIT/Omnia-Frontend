@@ -27,7 +27,7 @@ class Menu extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: const Icon(Icons.linked_camera_outlined),
+            leading: Image.asset("assets/x.png", height: 20, width: 20),
             title: const Text('LinkedIn'),
             onTap: () => _launchURL('https://www.linkedin.com'),
           ),
@@ -37,7 +37,7 @@ class Menu extends StatelessWidget {
             onTap: () => _launchURL('https://www.instagram.com'),
           ),
           ListTile(
-            leading: const Icon(Icons.transfer_within_a_station_rounded),
+            leading: Image.asset("assets/x.png", height: 20, width: 20),
             title: const Text('Twitter'),
             onTap: () => _launchURL('https://www.twitter.com'),
           ),
