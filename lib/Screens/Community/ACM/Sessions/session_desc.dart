@@ -39,11 +39,27 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
     super.dispose();
   }
 
+  void _showImageFullscreen(String imageUrl) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          child: GestureDetector(
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+            child: Image.asset(imageUrl),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: navColor,
+        backgroundColor: navColor, 
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -86,20 +102,10 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
                               color: Colors.black87,
                             ),
                             trimLines: 5,
-                            colorClickableText: navColor,
+                            colorClickableText: Colors.blue,
                             trimMode: TrimMode.Length,
                             trimCollapsedText: 'Read more',
                             trimExpandedText: 'Read less',
-                            moreStyle: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.blue,
-                            ),
-                            lessStyle: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.blue,
-                            ),
                           ),
                         ),
                       ),
@@ -118,19 +124,25 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
                                 });
                               },
                               itemBuilder: (context, index) {
-                                return Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                  child: Card(
-                                    elevation: 6,
-                                    shadowColor: const Color.fromARGB(255, 139, 138, 138),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(5),
-                                      child: Image.asset(
-                                        widget.gallery[index],
-                                        fit: BoxFit.cover,
+                                return GestureDetector(
+                                  onTap: () {
+                                    _showImageFullscreen(widget.gallery[index]);
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                    child: Card(
+                                      elevation: 11,
+                                      shadowColor: const Color.fromARGB(255, 7, 7, 7),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Image.asset(
+                                          widget.gallery[index],
+                                          fit: BoxFit.cover,
+                                         
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -143,8 +155,8 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
                                 dotsCount: widget.gallery.length,
                                 position: _currentPage,
                                 decorator: DotsDecorator(
-                                  color: Colors.grey, 
-                                  activeColor: Colors.blue, 
+                                  color: Colors.grey,
+                                  activeColor: Colors.blue,
                                   size: const Size.square(9.0),
                                   activeSize: const Size(18.0, 9.0),
                                   spacing: const EdgeInsets.symmetric(horizontal: 4.0),
