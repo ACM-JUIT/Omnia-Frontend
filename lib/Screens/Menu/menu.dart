@@ -3,13 +3,12 @@ import 'package:omnia/Resources/Theme/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Menu extends StatelessWidget {
-  const Menu({super.key, });
+  const Menu({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
+      child: Column(
         children: <Widget>[
           Container(
             color: Colors.blue, // Replace with your color
@@ -42,68 +41,68 @@ class Menu extends StatelessWidget {
             onTap: () => _launchURL('https://x.com/AcmJuit'),
           ),
           ListTile(
-            leading: Image.asset("assets/mail.png", height: 27, width: 27),
-            title: const Text(' Email'),
-            onTap: () => _launchURL('mailto:acm@juitsolan.in'),
-          ),
-          ListTile(
-            leading: Image.asset("assets/git.png",height: 30, width: 30),
+            leading: Image.asset("assets/git.png", height: 30, width: 30),
             title: const Text('Github'),
             onTap: () => _launchURL('https://github.com/ACM-JUIT/'),
           ),
           const SizedBox(height: 10.0),
           const Divider(),
-          const SizedBox(height: 160.0),
-          Center(
-            child: Row(
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 20.0),
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                    'Made by ',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16.0,
-                      color: Colors.grey[600],
-                      fontStyle: FontStyle.italic,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Made by ',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0,
+                        color: Colors.grey[600],
+                        fontStyle: FontStyle.italic,
+                      ),
                     ),
-                  ),
-                GestureDetector(
-                  onTap: () => _launchURL('https://www.linkedin.com/in/antrimo/'), // Replace with Kartikey's URL
-                  child: const Text(
-                    ' Kartikey',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16.0,
-                      color: Color.fromARGB(255, 88, 88, 88),
-                      fontStyle: FontStyle.italic,
+                    GestureDetector(
+                      onTap: () => _launchURL('https://www.linkedin.com/in/antrimo/'),
+                      child: const Text(
+                        ' Kartikey',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.0,
+                          color: Color.fromARGB(255, 88, 88, 88),
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-  
-                Text(
-                    ' and',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16.0,
-                      color: Colors.grey[600],
-                      fontStyle: FontStyle.italic,
+                    Text(
+                      ' and',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0,
+                        color: Colors.grey[600],
+                        fontStyle: FontStyle.italic,
+                      ),
                     ),
-                  ), // Adjust spacing as needed
-                GestureDetector(
-                  onTap: () => _launchURL('https://www.linkedin.com/in/aditya-kumar-a215k/'), // Replace with Aditya's URL
-                  child: const Text(
-                    ' Aditya',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16.0,
-                      color: Color.fromARGB(255, 80, 79, 79),
-                      fontStyle: FontStyle.italic,
+                    GestureDetector(
+                      onTap: () => _launchURL('https://www.linkedin.com/in/aditya-kumar-a215k/'),
+                      child: const Text(
+                        ' Aditya',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.0,
+                          color: Color.fromARGB(255, 80, 79, 79),
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ],
             ),

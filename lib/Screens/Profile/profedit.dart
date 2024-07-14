@@ -13,14 +13,14 @@ class EditProfile extends StatefulWidget {
   final File? imageFile;
 
   const EditProfile({
-    super.key, 
-    this.name, 
-    this.bio, 
-    this.username, 
-    this.linkedInUrl, 
-    this.githubUrl, 
-    this.twitterUrl, 
-    this.imageFile
+    super.key,
+    this.name,
+    this.bio,
+    this.username,
+    this.linkedInUrl,
+    this.githubUrl,
+    this.twitterUrl,
+    this.imageFile,
   });
 
   @override
@@ -107,31 +107,44 @@ class _EditProfileState extends State<EditProfile> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            const SizedBox(
-              height: 16,
-            ),
-            GestureDetector(
-              onTap: _pickImage,
-              child: Container(
-                height: 120,
-                width: 120,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    image: _imageFile != null
-                        ? FileImage(_imageFile!)
-                        : const AssetImage("assets/luffy.png") as ImageProvider,
-                  ),
-                  border: Border.all(
-                    color: Colors.white,
-                    width: 3,
+            const SizedBox(height: 16),
+            Stack(
+              children: [
+                Container(
+                  height: 120,
+                  width: 120,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: _imageFile != null
+                          ? FileImage(_imageFile!)
+                          : const AssetImage("assets/luffy.png") as ImageProvider,
+                    ),
+                    border: Border.all(
+                      color: Colors.white,
+                      width: 3,
+                    ),
                   ),
                 ),
-              ),
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: GestureDetector(
+                    onTap: _pickImage,
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: const BoxDecoration(
+                        color: Colors.blue,
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(Icons.edit, color: Colors.white),
+                    ),
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(
-              height: 20,
-            ),
+            const SizedBox(height: 20),
             _buildTextField(_nameController, 'Name'),
             const SizedBox(height: 16),
             _buildTextField(_usernameController, 'Username'),
