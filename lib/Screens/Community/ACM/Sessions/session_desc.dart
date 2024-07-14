@@ -48,7 +48,7 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
             onTap: () {
               Navigator.of(context).pop();
             },
-            child: Image.asset(imageUrl),
+            child: Image.asset(imageUrl, fit: BoxFit.contain),
           ),
         );
       },
@@ -59,117 +59,123 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: navColor, 
+        backgroundColor: navColor,
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset(widget.sessionPoster),
-              const SizedBox(height: 20),
-              Container(
-                width: MediaQuery.of(context).size.width * 0.9,
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 191, 194, 236),
-                  borderRadius: BorderRadius.circular(10),
+              Center(
+                child: Image.asset(
+                  widget.sessionPoster,
+                  fit: BoxFit.contain,
+                  // width: MediaQuery.of(context).size.width * 0.9,
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Center(
-                        child: Text(
-                          widget.sessionHeadings,
-                          style: const TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.01,
-                      ),
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: ReadMoreText(
-                            widget.sessionDescription,
+              ),
+              const SizedBox(height: 20),
+              Center(
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 191, 194, 236),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      children: [
+                        Center(
+                          child: Text(
+                            widget.sessionHeadings,
                             style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400,
-                              height: 1.5,
-                              color: Colors.black87,
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
                             ),
-                            trimLines: 5,
-                            colorClickableText: Colors.blue,
-                            trimMode: TrimMode.Length,
-                            trimCollapsedText: 'Read more',
-                            trimExpandedText: 'Read less',
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 20),
-                      SizedBox(
-                        height: 200,
-                        child: Stack(
-                          alignment: Alignment.bottomCenter,
-                          children: [
-                            PageView.builder(
-                              controller: _pageController,
-                              itemCount: widget.gallery.length,
-                              onPageChanged: (index) {
-                                setState(() {
-                                  _currentPage = index;
-                                });
-                              },
-                              itemBuilder: (context, index) {
-                                return GestureDetector(
-                                  onTap: () {
-                                    _showImageFullscreen(widget.gallery[index]);
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                    child: Card(
-                                      elevation: 11,
-                                      shadowColor: const Color.fromARGB(255, 7, 7, 7),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(10),
-                                        child: Image.asset(
-                                          widget.gallery[index],
-                                          fit: BoxFit.cover,
-                                         
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.01,
+                        ),
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: ReadMoreText(
+                              widget.sessionDescription,
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w400,
+                                height: 1.5,
+                                color: Colors.black87,
+                              ),
+                              trimLines: 5,
+                              colorClickableText: Colors.blue,
+                              trimMode: TrimMode.Length,
+                              trimCollapsedText: 'Read more',
+                              trimExpandedText: 'Read less',
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        SizedBox(
+                          height: 200,
+                          child: Stack(
+                            alignment: Alignment.bottomCenter,
+                            children: [
+                              PageView.builder(
+                                controller: _pageController,
+                                itemCount: widget.gallery.length,
+                                onPageChanged: (index) {
+                                  setState(() {
+                                    _currentPage = index;
+                                  });
+                                },
+                                itemBuilder: (context, index) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      _showImageFullscreen(widget.gallery[index]);
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                      child: Card(
+                                        elevation: 11,
+                                        shadowColor: const Color.fromARGB(255, 7, 7, 7),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(10),
+                                          child: Image.asset(
+                                            widget.gallery[index],
+                                            fit: BoxFit.cover,
+                                            width: MediaQuery.of(context).size.width * 0.8,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                );
-                              },
-                            ),
-                            Positioned(
-                              bottom: 10,
-                              child: DotsIndicator(
-                                dotsCount: widget.gallery.length,
-                                position: _currentPage,
-                                decorator: DotsDecorator(
-                                  color: Colors.grey,
-                                  activeColor: Colors.blue,
-                                  size: const Size.square(9.0),
-                                  activeSize: const Size(18.0, 9.0),
-                                  spacing: const EdgeInsets.symmetric(horizontal: 4.0),
-                                  activeShape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.0),
+                                  );
+                                },
+                              ),
+                              Positioned(
+                                bottom: 10,
+                                child: DotsIndicator(
+                                  dotsCount: widget.gallery.length,
+                                  position: _currentPage,
+                                  decorator: DotsDecorator(
+                                    color: Colors.grey,
+                                    activeColor: Colors.blue,
+                                    size: const Size.square(9.0),
+                                    activeSize: const Size(18.0, 9.0),
+                                    spacing: const EdgeInsets.symmetric(horizontal: 4.0),
+                                    activeShape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

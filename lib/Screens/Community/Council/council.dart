@@ -61,6 +61,11 @@ class _CouncilState extends State<Council> {
                 imagePath: 'assets/profile5.png',
               ),
               _buildCard(
+                heading: 'Nikhilesh',
+                subheading: 'Membership Chair',
+                imagePath: 'assets/profile1.png',
+              ),
+              _buildCard(
                 heading: 'Vidhi Jaiswal',
                 subheading: 'Creative Head',
                 imagePath: 'assets/profile2.png',
