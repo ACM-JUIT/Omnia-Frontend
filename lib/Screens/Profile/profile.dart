@@ -29,14 +29,14 @@ class _ProfileState extends State<Profile> {
   void initState() {
     super.initState();
     displayName = 'Name';
-    bio = 'enter your bio here';
+    bio = 'Enter your bio here';
     username = '@username';
     linkedInUrl = 'https://linkedin.com/';
     githubUrl = 'https://github.com/';
     twitterUrl = 'https://twitter.com/';
   }
 
-  Future<void> signoutttt() async {
+  Future<void> signout() async {
     await Auth().signTFOut();
   }
 
@@ -48,9 +48,9 @@ class _ProfileState extends State<Profile> {
     }
   }
 
-  Widget _signoutButt() {
+  Widget _signoutButton() {
     return ElevatedButton(
-      onPressed: signoutttt,
+      onPressed: signout,
       style: ElevatedButton.styleFrom(
         foregroundColor: Colors.white, backgroundColor: Colors.redAccent,
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
@@ -64,6 +64,8 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -81,6 +83,39 @@ class _ProfileState extends State<Profile> {
             }));
           },
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.mode_edit_outline_outlined, color: Colors.white),
+            onPressed: () async {
+              final result = await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EditProfile(
+                    name: displayName,
+                    bio: bio,
+                    username: username,
+                    linkedInUrl: linkedInUrl,
+                    githubUrl: githubUrl,
+                    twitterUrl: twitterUrl,
+                    imageFile: _profileImage,
+                  ),
+                  settings: const RouteSettings(name: 'Edit Profile'),
+                ),
+              );
+              if (result != null) {
+                setState(() {
+                  displayName = result['name'];
+                  bio = result['bio'];
+                  username = result['username'];
+                  linkedInUrl = result['linkedInUrl'];
+                  githubUrl = result['githubUrl'];
+                  twitterUrl = result['twitterUrl'];
+                  _profileImage = result['imageFile'];
+                });
+              }
+            },
+          ),
+        ],
       ),
       backgroundColor: primaryColor,
       body: SingleChildScrollView(
@@ -89,9 +124,7 @@ class _ProfileState extends State<Profile> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            const SizedBox(
-              height: 16,
-            ),
+            const SizedBox(height: 16),
             Container(
               height: 120,
               width: 120,
@@ -108,70 +141,25 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
+            const SizedBox(height: 20),
             // Name
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(width: 50),
-                Text(
-                  displayName ?? 'User name',
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 24,
-                    color: Colors.white,
-                  ),
-                ),
-                const SizedBox(width: 10),
-                IconButton(
-                  color: Colors.white,
-                  onPressed: () async {
-                    final result = await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => EditProfile(
-                          name: displayName,
-                          bio: bio,
-                          username: username,
-                          linkedInUrl: linkedInUrl,
-                          githubUrl: githubUrl,
-                          twitterUrl: twitterUrl,
-                          imageFile: _profileImage,
-                        ),
-                        settings: const RouteSettings(name: 'Edit Profile'),
-                      ),
-                    );
-                    if (result != null) {
-                      setState(() {
-                        displayName = result['name'];
-                        bio = result['bio'];
-                        username = result['username'];
-                        linkedInUrl = result['linkedInUrl'];
-                        githubUrl = result['githubUrl'];
-                        twitterUrl = result['twitterUrl'];
-                        _profileImage = result['imageFile'];
-                      });
-                    }
-                  },
-                  icon: const Icon(Icons.mode_edit_outline_outlined),
-                ),
-              ],
+            Text(
+              displayName ?? 'User name',
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 24,
+                color: Colors.white,
+              ),
             ),
-            const SizedBox(
-              height: 4,
-            ),
+            const SizedBox(height: 4),
             // ID TAG
             Text(
               username ?? '@nika',
               textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 16, color: Colors.white),
             ),
-            const SizedBox(
-              height: 15,
-            ),
+            const SizedBox(height: 15),
             // Social Links
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -190,9 +178,7 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  width: 16,
-                ),
+                const SizedBox(width: 16),
                 GestureDetector(
                   onTap: () {
                     _launchURL(githubUrl ?? 'https://github.com/');
@@ -207,9 +193,7 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  width: 16,
-                ),
+                const SizedBox(width: 16),
                 GestureDetector(
                   onTap: () {
                     _launchURL(twitterUrl ?? 'https://twitter.com/');
@@ -226,9 +210,7 @@ class _ProfileState extends State<Profile> {
                 ),
               ],
             ),
-            const SizedBox(
-              height: 45,
-            ),
+            const SizedBox(height: 45),
             // Bio
             Container(
               padding: const EdgeInsets.all(16),
@@ -257,7 +239,7 @@ class _ProfileState extends State<Profile> {
               ),
             ),
             const SizedBox(height: 20),
-            _signoutButt(),
+            _signoutButton(),
           ],
         ),
       ),

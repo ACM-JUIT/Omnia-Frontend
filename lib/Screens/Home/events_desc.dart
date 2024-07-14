@@ -48,7 +48,7 @@ class _DetailsPageState extends State<DetailsPage> {
             onTap: () {
               Navigator.of(context).pop();
             },
-            child: Image.asset(imageUrl),
+            child: Image.asset(imageUrl, fit: BoxFit.contain),
           ),
         );
       },
@@ -64,38 +64,40 @@ class _DetailsPageState extends State<DetailsPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset(widget.imageUrl),
-              const SizedBox(height: 20),
-              Container(
-                width: MediaQuery.of(context).size.width * 0.9,
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(10),
+              Center(
+                child: Image.asset(
+                  widget.imageUrl,
+                  fit: BoxFit.contain,
+                  // width: MediaQuery.of(context).size.width * 0.9,
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    children: [
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Center(
+              ),
+              const SizedBox(height: 20),
+              Center(
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 191, 194, 236),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      children: [
+                        Center(
                           child: Text(
                             widget.heading,
                             style: const TextStyle(
-                              fontSize: 30,
+                              fontSize: 24,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.01,
-                      ),
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Center(
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.01,
+                        ),
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
                             child: ReadMoreText(
                               widget.eventsDescription,
                               style: const TextStyle(
@@ -112,67 +114,68 @@ class _DetailsPageState extends State<DetailsPage> {
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 20),
-                      SizedBox(
-                        height: 200,
-                        child: Stack(
-                          alignment: Alignment.bottomCenter,
-                          children: [
-                            PageView.builder(
-                              controller: _pageController,
-                              itemCount: widget.eventsgallery.length,
-                              onPageChanged: (index) {
-                                setState(() {
-                                  _currentPage = index;
-                                });
-                              },
-                              itemBuilder: (context, index) {
-                                return GestureDetector(
-                                  onTap: () {
-                                    _showImageFullscreen(widget.eventsgallery[index]);
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                    child: Card(
-                                      elevation: 11.0,
-                                      shadowColor: const Color.fromARGB(255, 14, 13, 13),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(10),
-                                        child: Image.asset(
-                                          widget.eventsgallery[index],
-                                          fit: BoxFit.cover,
+                        const SizedBox(height: 20),
+                        SizedBox(
+                          height: 200,
+                          child: Stack(
+                            alignment: Alignment.bottomCenter,
+                            children: [
+                              PageView.builder(
+                                controller: _pageController,
+                                itemCount: widget.eventsgallery.length,
+                                onPageChanged: (index) {
+                                  setState(() {
+                                    _currentPage = index;
+                                  });
+                                },
+                                itemBuilder: (context, index) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      _showImageFullscreen(widget.eventsgallery[index]);
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                      child: Card(
+                                        elevation: 11.0,
+                                        shadowColor: const Color.fromARGB(255, 14, 13, 13),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(10),
+                                          child: Image.asset(
+                                            widget.eventsgallery[index],
+                                            fit: BoxFit.cover,
+                                            width: MediaQuery.of(context).size.width * 0.8,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                );
-                              },
-                            ),
-                            Positioned(
-                              bottom: 10,
-                              child: DotsIndicator(
-                                dotsCount: widget.eventsgallery.length,
-                                position: _currentPage,
-                                decorator: DotsDecorator(
-                                  color: Colors.grey,
-                                  activeColor: Colors.blue,
-                                  size: const Size.square(9.0),
-                                  activeSize: const Size(18.0, 9.0),
-                                  spacing: const EdgeInsets.symmetric(horizontal: 4.0),
-                                  activeShape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.0),
+                                  );
+                                },
+                              ),
+                              Positioned(
+                                bottom: 10,
+                                child: DotsIndicator(
+                                  dotsCount: widget.eventsgallery.length,
+                                  position: _currentPage,
+                                  decorator: DotsDecorator(
+                                    color: Colors.grey,
+                                    activeColor: Colors.blue,
+                                    size: const Size.square(9.0),
+                                    activeSize: const Size(18.0, 9.0),
+                                    spacing: const EdgeInsets.symmetric(horizontal: 4.0),
+                                    activeShape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
