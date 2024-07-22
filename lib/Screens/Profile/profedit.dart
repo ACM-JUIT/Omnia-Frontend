@@ -74,11 +74,20 @@ class _EditProfileState extends State<EditProfile> {
   }
 
   Future<void> _pickImage() async {
-    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    final ImagePicker picker = ImagePicker();
+    final XFile? pickedFile = await picker.pickImage(
+      source: ImageSource.gallery, // Or ImageSource.camera 
+    );
+
     if (pickedFile != null) {
+      // Update the UI to display the selected image
       setState(() {
+      if (pickedFile != null) {
         _imageFile = File(pickedFile.path);
-      });
+      } else {
+        print('No image selected.');
+      }
+    });
     }
   }
 
@@ -174,7 +183,8 @@ class _EditProfileState extends State<EditProfile> {
     );
   }
 
-  Widget _buildTextField(TextEditingController controller, String label, {int maxLines = 1}) {
+
+  Widget _buildTextField(TextEditingController controller,String label, {int maxLines = 1}) {
     return TextField(
       controller: controller,
       maxLines: maxLines,

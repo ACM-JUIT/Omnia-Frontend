@@ -33,66 +33,77 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       
-      body: Container(
-        height: 1864,
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/wolf.png"),
-            fit: BoxFit.cover,
-          ),
-        ),
+      body: GestureDetector(
+        onTap: () {
+          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const WidgetTREEE(),
+                            ),
+                          );
+        },
         child: Container(
-          color: Colors.black.withOpacity(0.3),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 350,
-              ),
-              Column(
-                children: [
-                  Center(
-                    child: TextButton.icon(
-                      style: const ButtonStyle(
-                        alignment: Alignment.center,
-                        iconSize: WidgetStatePropertyAll<double>(75),
-                        foregroundColor:
-                            WidgetStatePropertyAll<Color>(Colors.white),
+          height: 1864,
+          width: double.infinity,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/wolf.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Container(
+            color: Colors.black.withOpacity(0.3),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const SizedBox(
+                  height: 350,
+                ),
+                Column(
+                  children: [
+                    Center(
+                      child: TextButton.icon(
+                        style: const ButtonStyle(
+                          alignment: Alignment.center,
+                          iconSize: WidgetStatePropertyAll<double>(75),
+                          foregroundColor:
+                              WidgetStatePropertyAll<Color>(Colors.white),
+                        ),
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const WidgetTREEE(),
+                            ),
+                          );
+                        },
+                        icon: const Icon(Icons.touch_app),
+                        label: const Text(''),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const WidgetTREEE(),
-                          ),
-                        );
-                      },
-                      icon: const Icon(Icons.touch_app),
-                      label: const Text(''),
                     ),
-                  ),
-                  const Text(
-                    'Tap',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w800,
+                    const Text(
+                      'Tap',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w800,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 160,
-              ),
-              Container(
-                height: 76,
-                width: 148,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("assets/acmlogo.png"),
+                  ],
+                ),
+
+                const SizedBox( height: 160),
+                
+                Container(
+                  height: 76,
+                  width: 148,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/acmlogo.png"),
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
