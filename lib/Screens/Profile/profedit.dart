@@ -20,11 +20,12 @@ class _EditProfileState extends State<EditProfile> {
   final _linkedinController = TextEditingController();
   final _githubController = TextEditingController();
   final _twitterController = TextEditingController(); 
-  var _imageFile;
+  File? _imageFile;
 
   // Save Function (Integration with your data storage method)
   void _saveData() {
    // ... Logic to save profile data using your preferred method ...
+    Navigator.pop(context);
   }
 
   @override
@@ -122,21 +123,21 @@ class _EditProfileState extends State<EditProfile> {
         ),
     );
   }
-
+// Function to pick an image from the gallery
   Future<void> _pickImage() async {
-    final ImagePicker picker = ImagePicker();
-    final XFile? image = await picker.pickImage(
-      source: ImageSource.gallery, // Or ImageSource.camera 
-    );
+    final ImagePicker _picker = ImagePicker(); // Create an instance of ImagePicker
+    final XFile? pickedFile = await _picker.pickImage(source: ImageSource.gallery);
 
-    if (image != null) {
-      // Update the UI to display the selected image
-      setState(() {
-        // Store the image path or File for later use
-        _imageFile = File(image.path); 
-      });
-    }
+    // Set the state with the picked image file
+    setState(() {
+      if (pickedFile != null) {
+        _imageFile = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
   }
+
 
   Widget _buildSocialLinkField(String label, TextEditingController controller) {
     return TextField(
