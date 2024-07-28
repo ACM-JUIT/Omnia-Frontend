@@ -7,6 +7,7 @@ import 'package:omnia/Screens/Profile/profedit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:omnia/Screens/Signup/auth.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -24,16 +25,12 @@ class _ProfileState extends State<Profile> {
   String? githubUrl;
   String? twitterUrl;
   File? _profileImage;
+  String? _profileImageUrl;
 
   @override
   void initState() {
     super.initState();
-    displayName = 'Name';
-    bio = 'Enter your bio here';
-    username = '@username';
-    linkedInUrl = 'https://linkedin.com/';
-    githubUrl = 'https://github.com/';
-    twitterUrl = 'https://twitter.com/';
+    _fetchUserData();
   }
 
   Future<void> signout() async {
@@ -41,30 +38,44 @@ class _ProfileState extends State<Profile> {
   }
 
   Future<void> _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
+    final Uri uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
     } else {
       throw 'Could not launch $url';
     }
   }
 
-  Widget _signoutButton() {
-    return ElevatedButton(
-      onPressed: signout,
-      style: ElevatedButton.styleFrom(
-        foregroundColor: Colors.white, backgroundColor: Colors.redAccent,
-        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-      ),
-      child: const Text('Sign out'),
-    );
+
+  Future<void> _fetchUserData() async {
+    if (user == null) {
+      return;
+    }
+
+    final email = user!.email;
+
+    try {
+      DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('UserModel').doc(email).get();
+      if (userDoc.exists) {
+        Map<String, dynamic> userData = userDoc.data() as Map<String, dynamic>;
+        setState(() {
+          displayName = userData['name'] ?? 'Name';
+          username = userData['usern'] ?? 'add username';
+          bio = userData['bio'] ?? 'Enter your bio here';
+          linkedInUrl = userData['linked'] ?? 'https://linkedin.com/';
+          githubUrl = userData['git'] ?? 'https://github.com/';
+          twitterUrl = userData['twit'] ?? 'https://twitter.com/';
+          _profileImageUrl = userData['avatar'];
+        });
+      }
+    } catch (e) {
+      print("Failed to fetch user data: $e");
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
+    // double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       appBar: AppBar(
@@ -90,15 +101,7 @@ class _ProfileState extends State<Profile> {
               final result = await Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => EditProfile(
-                    name: displayName,
-                    bio: bio,
-                    username: username,
-                    linkedInUrl: linkedInUrl,
-                    githubUrl: githubUrl,
-                    twitterUrl: twitterUrl,
-                    imageFile: _profileImage,
-                  ),
+                  builder: (context) => const EditProfile(),
                   settings: const RouteSettings(name: 'Edit Profile'),
                 ),
               );
@@ -133,7 +136,9 @@ class _ProfileState extends State<Profile> {
                 image: DecorationImage(
                   image: _profileImage != null
                       ? FileImage(_profileImage!)
-                      : const AssetImage("assets/luffy.png") as ImageProvider,
+                      : (_profileImageUrl != null
+                          ? NetworkImage(_profileImageUrl!)
+                          : const AssetImage("assets/luffy.png")) as ImageProvider,
                 ),
                 border: Border.all(
                   color: Colors.white,
@@ -155,7 +160,7 @@ class _ProfileState extends State<Profile> {
             const SizedBox(height: 4),
             // ID TAG
             Text(
-              username ?? '@nika',
+              '@$username',
               textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 16, color: Colors.white),
             ),
@@ -243,6 +248,20 @@ class _ProfileState extends State<Profile> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _signoutButton() {
+    return ElevatedButton(
+      onPressed: signout,
+      style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.white, backgroundColor: Colors.redAccent,
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+      ),
+      child: const Text('Sign out'),
     );
   }
 }

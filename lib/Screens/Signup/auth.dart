@@ -18,14 +18,16 @@ class Auth {
       );
   }
 
-  Future<void> createUserWEmailPass({
+  Future<UserCredential> createUserWEmailPass({
       required String email,
       required String pass,
   }) async {
-    await _fireAuth.createUserWithEmailAndPassword(
+      UserCredential userCred = await _fireAuth.createUserWithEmailAndPassword(
       email: email,
       password: pass,
       );
+
+      return userCred;
   }
 
   Future<void> signTFOut() async {
