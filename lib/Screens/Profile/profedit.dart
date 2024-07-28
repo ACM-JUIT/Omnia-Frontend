@@ -1,34 +1,20 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import '../../Resources/Theme/theme.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:elegant_notification/elegant_notification.dart';
+import 'package:omnia/Resources/Theme/theme.dart';
 
 class EditProfile extends StatefulWidget {
-  final String? name;
-  final String? bio;
-  final String? username;
-  final String? linkedInUrl;
-  final String? githubUrl;
-  final String? twitterUrl;
-  final File? imageFile;
-
-  const EditProfile({
-    super.key,
-    this.name,
-    this.bio,
-    this.username,
-    this.linkedInUrl,
-    this.githubUrl,
-    this.twitterUrl,
-    this.imageFile,
-  });
+  const EditProfile({super.key});
 
   @override
   State<EditProfile> createState() => _EditProfileState();
 }
 
 class _EditProfileState extends State<EditProfile> {
-  // Controllers for Text Fields
   late TextEditingController _nameController;
   late TextEditingController _usernameController;
   late TextEditingController _bioController;
@@ -36,22 +22,24 @@ class _EditProfileState extends State<EditProfile> {
   late TextEditingController _githubController;
   late TextEditingController _twitterController;
   File? _imageFile;
+  final User? user = FirebaseAuth.instance.currentUser;
+  String? _profileImageUrl;
 
   @override
   void initState() {
     super.initState();
-    _nameController = TextEditingController(text: widget.name);
-    _usernameController = TextEditingController(text: widget.username);
-    _bioController = TextEditingController(text: widget.bio);
-    _linkedinController = TextEditingController(text: widget.linkedInUrl);
-    _githubController = TextEditingController(text: widget.githubUrl);
-    _twitterController = TextEditingController(text: widget.twitterUrl);
-    _imageFile = widget.imageFile;
+    _nameController = TextEditingController();
+    _usernameController = TextEditingController();
+    _bioController = TextEditingController();
+    _linkedinController = TextEditingController();
+    _githubController = TextEditingController();
+    _twitterController = TextEditingController();
+
+    _fetchUserData();
   }
 
   @override
   void dispose() {
-    // Dispose controllers
     _nameController.dispose();
     _usernameController.dispose();
     _bioController.dispose();
@@ -61,24 +49,132 @@ class _EditProfileState extends State<EditProfile> {
     super.dispose();
   }
 
-  void _saveData() {
-    Navigator.pop(context, {
-      'name': _nameController.text,
-      'bio': _bioController.text,
-      'username': _usernameController.text,
-      'linkedInUrl': _linkedinController.text,
-      'githubUrl': _githubController.text,
-      'twitterUrl': _twitterController.text,
-      'imageFile': _imageFile,
-    });
+  Future<void> _fetchUserData() async {
+    if (user == null) {
+      ElegantNotification.error(
+        description: const Text("User not logged in"),
+      );
+      return;
+    }
+
+    final email = user!.email;
+    if (email == null) {
+      ElegantNotification.error(
+        description: const Text("User email not found"),
+      );
+      return;
+    }
+
+    try {
+      DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('UserModel').doc(email).get();
+      if (userDoc.exists) {
+        Map<String, dynamic> userData = userDoc.data() as Map<String, dynamic>;
+        setState(() {
+          _nameController.text = userData['name'] ?? '';
+          _usernameController.text = userData['usern'] ?? '';
+          _bioController.text = userData['bio'] ?? '';
+          _linkedinController.text = userData['linked'] ?? '';
+          _githubController.text = userData['git'] ?? '';
+          _twitterController.text = userData['twit'] ?? '';
+          _profileImageUrl = userData['avatar'];
+        });
+      }
+    } catch (e) {
+      ElegantNotification.error(
+        description: Text("Failed to fetch user data: $e"),
+      );
+    }
+  }
+
+  Future<void> _saveData() async {
+    if (user == null) {
+      ElegantNotification.error(
+        description: const Text("User not logged in"),
+      );
+      return;
+    }
+
+    final email = user!.email;
+    if (email == null) {
+      ElegantNotification.error(
+        description: const Text("User email not found"),
+      );
+      return;
+    }
+
+    try {
+      String? profileImageUrl = _profileImageUrl;
+      if (_imageFile != null) {
+        profileImageUrl = await _uploadImage();
+      }
+
+      final userData = {
+        'name': _nameController.text,
+        'usern': _usernameController.text,
+        'bio': _bioController.text,
+        'twit': _twitterController.text,
+        'git': _githubController.text,
+        'linked': _linkedinController.text,
+        if (profileImageUrl != null) 'avatar': profileImageUrl,
+      };
+
+      // Check if document exists
+      DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('UserModel').doc(email).get();
+      if (userDoc.exists) {
+        await FirebaseFirestore.instance.collection('UserModel').doc(email).update(userData);
+      } else {
+        await FirebaseFirestore.instance.collection('UserModel').doc(email).set(userData);
+      }
+
+      ElegantNotification.success(
+        description: const Text("Profile updated"),
+      );
+
+      await Future.delayed(const Duration(seconds: 2));
+
+      Navigator.pop(context, {'imageFile': _imageFile});
+    } catch (e) {
+      ElegantNotification.error(
+        description: Text("Failed to update profile: $e"),
+      );
+    }
+  }
+
+  Future<String> _uploadImage() async {
+    try {
+      final ref = FirebaseStorage.instance.ref().child('user/profile').child(user!.email!);
+      UploadTask uploadTask = ref.putFile(_imageFile!);
+
+      // Add listener for debugging purposes
+      uploadTask.snapshotEvents.listen((TaskSnapshot snapshot) {
+        print('Task state: ${snapshot.state}');
+        print('Progress: ${(snapshot.bytesTransferred / snapshot.totalBytes) * 100} %');
+      }, onError: (e) {
+        print('Error: $e');
+      });
+
+      final snapshot = await uploadTask;
+
+      return await snapshot.ref.getDownloadURL();
+    } on FirebaseException catch (e) {
+      throw Exception('FirebaseException: ${e.message}');
+    } catch (e) {
+      throw Exception('An error occurred while uploading the image: $e');
+    }
   }
 
   Future<void> _pickImage() async {
-    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    final ImagePicker picker = ImagePicker();
+    final XFile? pickedFile = await picker.pickImage(
+      source: ImageSource.gallery, // Or ImageSource.camera 
+    );
+
     if (pickedFile != null) {
       setState(() {
         _imageFile = File(pickedFile.path);
       });
+    } else {
+      print('No image selected.');
     }
   }
 
@@ -118,7 +214,9 @@ class _EditProfileState extends State<EditProfile> {
                     image: DecorationImage(
                       image: _imageFile != null
                           ? FileImage(_imageFile!)
-                          : const AssetImage("assets/luffy.png") as ImageProvider,
+                          : (_profileImageUrl != null
+                              ? NetworkImage(_profileImageUrl!)
+                              : const AssetImage("assets/luffy.png")) as ImageProvider,
                     ),
                     border: Border.all(
                       color: Colors.white,
@@ -160,7 +258,8 @@ class _EditProfileState extends State<EditProfile> {
             ElevatedButton(
               onPressed: _saveData,
               style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white, backgroundColor: Colors.blue,
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.blue,
                 padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),

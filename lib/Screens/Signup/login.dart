@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:omnia/cloud.dart';
 import 'package:omnia/Screens/Signup/auth.dart';
 
 class Login extends StatefulWidget {
@@ -17,6 +17,7 @@ class _LoginState extends State<Login> {
   final TextEditingController _name = TextEditingController();
   String? errortext = '';
   bool isLoginfr = true;
+  CloudFire cloud = CloudFire();
 
   Future<void> signwitemailpassidk() async {
     try {
@@ -32,14 +33,24 @@ class _LoginState extends State<Login> {
   }
 
   Future<void> createFireUserWitEmailPass() async {
+    
+    showDialog(
+      context: context, 
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),);
+    
     try {
-      await Auth().createUserWEmailPass(email: _email.text, pass: _passk.text);
+      UserCredential? userCred =  await Auth().createUserWEmailPass(email: _email.text, pass: _passk.text);
+      cloud.makeUser(userCred, _name);
+      Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       setState(() {
         errortext = e.message;
       });
     }
   }
+
 
   Widget _errobitch() {
     return Text(
