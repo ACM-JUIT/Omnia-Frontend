@@ -1,9 +1,72 @@
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
+import 'package:omnia/Screens/Signup/auth.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Menu extends StatelessWidget {
   const Menu({super.key});
+
+  Future<void> signout() async {
+    await Auth().signTFOut();
+  }
+
+  Widget signoutButton(BuildContext context){
+    return ElevatedButton.icon(
+      icon: const Icon(Icons.arrow_back),
+      onPressed: () {
+        _alertdialog(context);
+      },
+      style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.white, backgroundColor: Colors.redAccent,
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+      ),
+      label: const Text('Sign out'),
+    );
+  }
+
+  void _alertdialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(  
+                backgroundColor: Colors.white,
+                title: const Text('Sign out?'),
+                content: const Text('Are you sure?'),
+                actions: <Widget>[
+                  TextButton(
+                    style: const ButtonStyle(
+                      side: WidgetStatePropertyAll(BorderSide(color: Colors.black, width: 1.5)),
+                      backgroundColor: WidgetStatePropertyAll(Colors.transparent),
+                    ),
+                    onPressed: (){
+                       Navigator.of(context).pop();
+                    }, 
+                    child: const Text('Go Back',
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
+                  )),
+                  TextButton(
+                    style: const ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll(Colors.red),
+                    ),
+                    onPressed: (){
+                       signout();
+                       Navigator.of(context).pop();
+                    }
+                  , child: const Text('Sign Out',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ))
+                ],
+           );
+    },
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -51,36 +114,17 @@ class Menu extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 20.0),
             child: Column(
+              // crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: <Widget>[
+                signoutButton(context),
+
+                SizedBox(height: 10,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       'Made by ',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16.0,
-                        color: Colors.grey[600],
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () => _launchURL('https://www.linkedin.com/in/antrimo/'),
-                      child: const Text(
-                        ' Kartikey',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16.0,
-                          color: Color.fromARGB(255, 88, 88, 88),
-                          fontStyle: FontStyle.italic,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      ' and',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -102,6 +146,30 @@ class Menu extends StatelessWidget {
                         ),
                       ),
                     ),
+                    Text(
+                      ' and',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0,
+                        color: Colors.grey[600],
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () => _launchURL('https://www.linkedin.com/in/antrimo/'),
+                      child: const Text(
+                        ' Kartikey',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.0,
+                          color: Color.fromARGB(255, 88, 88, 88),
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                    ),
+                    
                   ],
                 ),
               ],
@@ -110,13 +178,17 @@ class Menu extends StatelessWidget {
         ],
       ),
     );
+
+    
   }
 
   void _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
+    if (await canLaunchUrl(url as Uri)) {
+      await launchUrl(url as Uri);
     } else {
       throw 'Could not launch $url';
     }
   }
 }
+
+

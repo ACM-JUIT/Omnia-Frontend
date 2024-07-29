@@ -1,13 +1,14 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
 import 'package:omnia/Screens/navbar.dart/navbar.dart';
 import 'package:omnia/Screens/Profile/profedit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:omnia/Screens/Signup/auth.dart';
+import 'package:omnia/main.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -16,7 +17,7 @@ class Profile extends StatefulWidget {
   _ProfileState createState() => _ProfileState();
 }
 
-class _ProfileState extends State<Profile> {
+class _ProfileState extends State<Profile> with RouteAware {
   User? user = Auth().currentUser;
   String? displayName;
   String? bio;
@@ -33,8 +34,26 @@ class _ProfileState extends State<Profile> {
     _fetchUserData();
   }
 
-  Future<void> signout() async {
-    await Auth().signTFOut();
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final ModalRoute? route = ModalRoute.of(context);
+    if(route is PageRoute){
+      routeObserver.subscribe(this, route);
+    }
+  }
+
+  @override
+  void dispose() {
+    routeObserver.unsubscribe(this);
+    super.dispose();
+  }
+
+  @override
+  void didPopNext() {
+    // Called when the current route has been popped off,
+    // revealing this route.
+    _fetchUserData();
   }
 
   Future<void> _launchURL(String url) async {
@@ -45,7 +64,6 @@ class _ProfileState extends State<Profile> {
       throw 'Could not launch $url';
     }
   }
-
 
   Future<void> _fetchUserData() async {
     if (user == null) {
@@ -75,8 +93,6 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-    // double screenWidth = MediaQuery.of(context).size.width;
-
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -237,31 +253,10 @@ class _ProfileState extends State<Profile> {
               ),
             ),
             const SizedBox(height: 16),
-            Text(
-              user?.email ?? 'User email',
-              style: const TextStyle(
-                color: Colors.blue,
-              ),
-            ),
             const SizedBox(height: 20),
-            _signoutButton(),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _signoutButton() {
-    return ElevatedButton(
-      onPressed: signout,
-      style: ElevatedButton.styleFrom(
-        foregroundColor: Colors.white, backgroundColor: Colors.redAccent,
-        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-      ),
-      child: const Text('Sign out'),
     );
   }
 }
