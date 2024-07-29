@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:omnia/Resources/elegantnotif.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:elegant_notification/elegant_notification.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
 
 class EditProfile extends StatefulWidget {
@@ -24,6 +24,7 @@ class _EditProfileState extends State<EditProfile> {
   File? _imageFile;
   final User? user = FirebaseAuth.instance.currentUser;
   String? _profileImageUrl;
+  Elegantnotif notif = Elegantnotif();
 
   @override
   void initState() {
@@ -51,17 +52,13 @@ class _EditProfileState extends State<EditProfile> {
 
   Future<void> _fetchUserData() async {
     if (user == null) {
-      ElegantNotification.error(
-        description: const Text("User not logged in"),
-      );
+      notif.myElegantError(context, "User not logged in");
       return;
     }
 
     final email = user!.email;
     if (email == null) {
-      ElegantNotification.error(
-        description: const Text("User email not found"),
-      );
+      notif.myElegantError(context, "User email not found");
       return;
     }
 
@@ -80,25 +77,19 @@ class _EditProfileState extends State<EditProfile> {
         });
       }
     } catch (e) {
-      ElegantNotification.error(
-        description: Text("Failed to fetch user data: $e"),
-      );
+      notif.myElegantError(context, "Failed to fetch user data: $e");
     }
   }
 
   Future<void> _saveData() async {
     if (user == null) {
-      ElegantNotification.error(
-        description: const Text("User not logged in"),
-      );
+      notif.myElegantError(context, "User not logged in");
       return;
     }
 
     final email = user!.email;
     if (email == null) {
-      ElegantNotification.error(
-        description: const Text("User email not found"),
-      );
+      notif.myElegantError(context, "User email not found");
       return;
     }
 
@@ -126,17 +117,12 @@ class _EditProfileState extends State<EditProfile> {
         await FirebaseFirestore.instance.collection('UserModel').doc(email).set(userData);
       }
 
-      ElegantNotification.success(
-        description: const Text("Profile updated"),
-      );
+      notif.myElegantSuccess(context);
+      await Future.delayed(const Duration(seconds: 1));
+      Navigator.pop(context,);
 
-      await Future.delayed(const Duration(seconds: 2));
-
-      Navigator.pop(context, {'imageFile': _imageFile});
     } catch (e) {
-      ElegantNotification.error(
-        description: Text("Failed to update profile: $e"),
-      );
+      notif.myElegantError(context, "Failed to update profile: $e");
     }
   }
 
@@ -144,13 +130,12 @@ class _EditProfileState extends State<EditProfile> {
     try {
       final ref = FirebaseStorage.instance.ref().child('user/profile').child(user!.email!);
       UploadTask uploadTask = ref.putFile(_imageFile!);
-
+      notif.myElegantInfo(context, 'Uploading...', 10);
       // Add listener for debugging purposes
       uploadTask.snapshotEvents.listen((TaskSnapshot snapshot) {
-        print('Task state: ${snapshot.state}');
-        print('Progress: ${(snapshot.bytesTransferred / snapshot.totalBytes) * 100} %');
+        // notif.myElegantInfo(context, '');
       }, onError: (e) {
-        print('Error: $e');
+        notif.myElegantInfo(context, 'Error: $e', 4);
       });
 
       final snapshot = await uploadTask;
@@ -294,3 +279,5 @@ class _EditProfileState extends State<EditProfile> {
     );
   }
 }
+
+
