@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
+import 'package:omnia/Screens/Menu/menu.dart';
 import 'package:omnia/Screens/navbar.dart/navbar.dart';
 import 'package:omnia/Screens/Work/Projects/projects.dart';
 import 'package:omnia/Screens/Work/Resources/reso.dart';
@@ -47,6 +48,7 @@ class Work extends StatelessWidget {
             ),
           ),
           backgroundColor: primaryColor,
+          endDrawer: const Menu(),
           body: const TabBarView(
             children: [
               Project(),
