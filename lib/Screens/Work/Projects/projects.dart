@@ -27,7 +27,7 @@ class _ProjectState extends State<Project> {
       barrierDismissible: true, // Allow closing the popup by tapping outside
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Center(child: Text("Upcoming Soon")),
+          title: const Center(child: Text("Coming Soon")),
           actions: [
             Center(
               child: TextButton(
