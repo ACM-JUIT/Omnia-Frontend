@@ -133,7 +133,7 @@ class _ACMDetailsPageState extends State<ACMDetailsPage> {
                                                 ),
                                               ),
                                               Text(
-                                                "ACM Sessions",
+                                                "Tenure Recap",
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 18,
