@@ -79,7 +79,7 @@ class _ProfileState extends State<Profile> with RouteAware {
         setState(() {
           displayName = userData['name'] ?? 'Name';
           username = userData['usern'] ?? 'add username';
-          bio = userData['bio'] ?? 'Enter your bio here';
+          bio = userData['bio'] == "" ?'Enter your bio here': userData['bio'];
           linkedInUrl = userData['linked'] ?? 'https://linkedin.com/';
           githubUrl = userData['git'] ?? 'https://github.com/';
           twitterUrl = userData['twit'] ?? 'https://twitter.com/';
@@ -250,7 +250,7 @@ class _ProfileState extends State<Profile> with RouteAware {
                       ),
                     ),
                     child: Text(
-                      bio ?? 'BIO HERE',
+                      bio ?? 'Enter your bio in Edit-profile',
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontSize: 16,
