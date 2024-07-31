@@ -116,23 +116,23 @@ class _ReportBugState extends State<ReportBug> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            const SizedBox(height: 16),
+            const SizedBox(height: 40),
             const SizedBox(height: 16),
             _buildTextField(_titleController, 'Title'),
             const SizedBox(height: 16),
             _buildTextField(_bugController, 'Bug Description', maxLines: 4),
-
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: _report,
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
-                backgroundColor: Colors.blue,
+                backgroundColor: itemColor,
                 padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
-              child: const Text('Save'),
+              child: const Text('Report'),
             ),
           ]
         ),
@@ -148,10 +148,15 @@ class _ReportBugState extends State<ReportBug> {
         labelText: label,
         labelStyle: const TextStyle(color: Colors.white),
         border: OutlineInputBorder(
+          borderSide: const BorderSide(color: itemColor),
           borderRadius: BorderRadius.circular(10),
         ),
         filled: true,
         fillColor: Colors.white.withOpacity(0.1),
+        disabledBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: navColor),
+          borderRadius: BorderRadius.circular(10),
+        ),
         enabledBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: Colors.white),
           borderRadius: BorderRadius.circular(10),
