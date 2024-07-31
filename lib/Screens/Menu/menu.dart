@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
+import 'package:omnia/Resources/reportbug.dart';
 import 'package:omnia/Screens/Signup/auth.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -18,7 +19,7 @@ class Menu extends StatelessWidget {
       },
       style: ElevatedButton.styleFrom(
         foregroundColor: Colors.white, backgroundColor: Colors.redAccent,
-        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
@@ -117,9 +118,31 @@ class Menu extends StatelessWidget {
               // crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                signoutButton(context),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    //Bug report
+                    ElevatedButton.icon(
+                        icon: const Icon(Icons.bug_report),
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const ReportBug(),));
+                        },
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.white, backgroundColor: Colors.blueAccent,
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                        label: const Text('Report Bug'),
+                      ),
+                    
+                    //Signout button and shi
+                    signoutButton(context),
+                  ],
+                ),
 
-                SizedBox(height: 10,),
+                const SizedBox(height: 10,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -183,8 +206,8 @@ class Menu extends StatelessWidget {
   }
 
   void _launchURL(String url) async {
-    if (await canLaunchUrl(url as Uri)) {
-      await launchUrl(url as Uri);
+    if (await canLaunch(url)) {
+      await launch(url);
     } else {
       throw 'Could not launch $url';
     }
