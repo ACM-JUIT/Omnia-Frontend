@@ -26,7 +26,7 @@ class _ResoState extends State<Reso> {
       barrierDismissible: true, // Allow closing the popup by tapping outside
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Center(child: Text("Upcomig Soon")),
+          title: const Center(child: Text("Coming Soon")),
           actions: [
             TextButton(
               onPressed: () {
