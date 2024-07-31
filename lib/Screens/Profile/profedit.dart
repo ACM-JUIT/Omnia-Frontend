@@ -214,7 +214,7 @@ class _EditProfileState extends State<EditProfile> {
                   right: 0,
                   child: GestureDetector(
                     onTap: () async {
-                      notif.myElegantInfo(context, "Use Square image for best results", 3);
+                      notif.myElegantInfo(context, "Use Square image for best results", 2);
                       await Future.delayed(const Duration(seconds: 2));
                       _pickImage();
                     },
