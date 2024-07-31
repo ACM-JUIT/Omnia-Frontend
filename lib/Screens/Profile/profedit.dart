@@ -24,7 +24,7 @@ class _EditProfileState extends State<EditProfile> {
   File? _imageFile;
   final User? user = FirebaseAuth.instance.currentUser;
   String? _profileImageUrl;
-  Elegantnotif notif = Elegantnotif();
+  Elegantnotif notif = const Elegantnotif();
 
   @override
   void initState() {
@@ -117,7 +117,7 @@ class _EditProfileState extends State<EditProfile> {
         await FirebaseFirestore.instance.collection('UserModel').doc(email).set(userData);
       }
 
-      notif.myElegantSuccess(context);
+      notif.myElegantSuccess(context, "Profile Updated Successfully");
       await Future.delayed(const Duration(seconds: 1));
       Navigator.pop(context,);
 
@@ -159,7 +159,7 @@ class _EditProfileState extends State<EditProfile> {
         _imageFile = File(pickedFile.path);
       });
     } else {
-      print('No image selected.');
+      notif.myElegantError(context, 'No image selected.');
     }
   }
 
@@ -213,7 +213,11 @@ class _EditProfileState extends State<EditProfile> {
                   bottom: 0,
                   right: 0,
                   child: GestureDetector(
-                    onTap: _pickImage,
+                    onTap: () async {
+                      notif.myElegantInfo(context, "Use Square image for best results", 3);
+                      await Future.delayed(const Duration(seconds: 3));
+                      _pickImage();
+                    },
                     child: Container(
                       height: 40,
                       width: 40,
