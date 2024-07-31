@@ -127,7 +127,7 @@ class _ACMDetailsPageState extends State<ACMDetailsPage> {
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                "2024-2025",
+                                                "2023-2024",
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                 ),
