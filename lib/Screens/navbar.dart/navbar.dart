@@ -24,7 +24,7 @@ class _NavState extends State<Nav> {
     const MainHome(),
     const Community(),
     const Work(),
-    Profile(),
+    const Profile(),
   ];
 
   int currentPage = 0;

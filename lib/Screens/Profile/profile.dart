@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
+import 'package:omnia/Resources/elegantnotif.dart';
 import 'package:omnia/Screens/navbar.dart/navbar.dart';
 import 'package:omnia/Screens/Profile/profedit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,7 +15,8 @@ class Profile extends StatefulWidget {
   const Profile({super.key});
 
   @override
-  _ProfileState createState() => _ProfileState();
+  State<Profile> createState() => _ProfileState();
+  // _ProfileState createState() => _ProfileState();
 }
 
 class _ProfileState extends State<Profile> with RouteAware {
@@ -27,6 +29,7 @@ class _ProfileState extends State<Profile> with RouteAware {
   String? twitterUrl;
   File? _profileImage;
   String? _profileImageUrl;
+  Elegantnotif notif = const Elegantnotif();
 
   @override
   void initState() {
@@ -87,7 +90,7 @@ class _ProfileState extends State<Profile> with RouteAware {
         });
       }
     } catch (e) {
-      print("Failed to fetch user data: $e");
+      notif.myElegantError(context, "Failed to fetch user data: $e");
     }
   }
 
@@ -105,6 +108,7 @@ class _ProfileState extends State<Profile> with RouteAware {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
           onPressed: () {
+            
             Navigator.push(context, MaterialPageRoute(builder: (context) {
               return const Nav();
             }));
