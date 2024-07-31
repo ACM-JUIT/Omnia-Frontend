@@ -10,8 +10,9 @@ class Elegantnotif extends StatelessWidget {
 
   void myElegantSuccess(BuildContext context, String info){
   return  ElegantNotification.success(
-                    width: MediaQuery.of(context).size.width - 40,
-                    isDismissable: false,
+                    width: MediaQuery.of(context).size.width - 60,
+                    height: 60,
+                    isDismissable: true,
                     stackedOptions: StackedOptions(
                       key: 'top',
                       type: StackedType.same,
@@ -36,7 +37,9 @@ class Elegantnotif extends StatelessWidget {
 
   void myElegantError(BuildContext context, String err){
     return ElegantNotification.error(
-                    width: MediaQuery.of(context).size.width - 40,
+                    width: MediaQuery.of(context).size.width - 60,
+                    height: 60,
+                    isDismissable: true,
                     stackedOptions: StackedOptions(
                       key: 'topRight',
                       type: StackedType.below,
@@ -52,7 +55,9 @@ class Elegantnotif extends StatelessWidget {
 
   void myElegantInfo(BuildContext context, String info, int tim){
     return ElegantNotification.info(
-                    width: MediaQuery.of(context).size.width - 40,
+                    width: MediaQuery.of(context).size.width - 60,
+                    height: 60,
+                    isDismissable: true,
                     stackedOptions: StackedOptions(
                       key: 'topRight',
                       type: StackedType.same,

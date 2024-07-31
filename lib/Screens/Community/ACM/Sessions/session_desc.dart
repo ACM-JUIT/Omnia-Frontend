@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
-import 'package:readmore/readmore.dart';
+import 'package:omnia/Resources/widget_tiles.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 
 class SessionDetailsPage extends StatefulWidget {
@@ -26,6 +26,14 @@ class SessionDetailsPage extends StatefulWidget {
 class _SessionDetailsPageState extends State<SessionDetailsPage> {
   late PageController _pageController;
   int _currentPage = 0;
+  bool read = false; // Add a state variable to manage read state
+  MyWidgets mywidget = const MyWidgets();
+
+  void toggleRead() {
+    setState(() {
+      read = !read;
+    });
+  }
 
   @override
   void initState() {
@@ -98,20 +106,7 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
                         Center(
                           child: Padding(
                             padding: const EdgeInsets.all(16.0),
-                            child: ReadMoreText(
-                              widget.sessionDescription,
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400,
-                                height: 1.5,
-                                color: Colors.black87,
-                              ),
-                              trimLines: 5,
-                              colorClickableText: Colors.blue,
-                              trimMode: TrimMode.Length,
-                              trimCollapsedText: 'Read more',
-                              trimExpandedText: 'Read less',
-                            ),
+                            child: mywidget.descWid(widget.sessionDescription, read, toggleRead)
                           ),
                         ),
                         const SizedBox(height: 20),
