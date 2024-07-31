@@ -20,37 +20,49 @@ class _LoginState extends State<Login> {
   CloudFire cloud = CloudFire();
 
   Future<void> signwitemailpassidk() async {
-    try {
-      await Auth().signInWEmailPass(
-        email: _email.text,
-        pass: _passk.text,
-      );
-    } on FirebaseAuthException catch (e) {
+    if (_email.text.endsWith('@juitsolan.in')) {
+      try {
+        await Auth().signInWEmailPass(
+          email: _email.text,
+          pass: _passk.text,
+        );
+      } on FirebaseAuthException catch (e) {
+        setState(() {
+          errortext = e.message;
+        });
+      }
+    } else {
       setState(() {
-        errortext = e.message;
+        errortext = 'Please use an email ending with @juitsolan.in';
       });
     }
   }
 
   Future<void> createFireUserWitEmailPass() async {
-    
-    showDialog(
-      context: context, 
-      builder: (context) => const Center(
-        child: CircularProgressIndicator(),
-      ),);
-    
-    try {
-      UserCredential? userCred =  await Auth().createUserWEmailPass(email: _email.text, pass: _passk.text);
-      cloud.makeUser(userCred, _name);
-      Navigator.pop(context);
-    } on FirebaseAuthException catch (e) {
+    if (_email.text.endsWith('@juitsolan.in')) {
+      showDialog(
+        context: context,
+        builder: (context) => const Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+
+      try {
+        UserCredential? userCred = await Auth().createUserWEmailPass(
+            email: _email.text, pass: _passk.text);
+        cloud.makeUser(userCred, _name);
+        Navigator.pop(context);
+      } on FirebaseAuthException catch (e) {
+        setState(() {
+          errortext = e.message;
+        });
+      }
+    } else {
       setState(() {
-        errortext = e.message;
+        errortext = 'Please use an email ending with @juitsolan.in';
       });
     }
   }
-
 
   Widget _errobitch() {
     return Text(
