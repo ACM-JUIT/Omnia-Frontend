@@ -8,9 +8,9 @@ import 'package:flutter/material.dart';
 class Elegantnotif extends StatelessWidget {
   const Elegantnotif({super.key});
 
-  void myElegantSuccess(BuildContext context){
+  void myElegantSuccess(BuildContext context, String info){
   return  ElegantNotification.success(
-                    width: 360,
+                    width: MediaQuery.of(context).size.width - 40,
                     isDismissable: false,
                     stackedOptions: StackedOptions(
                       key: 'top',
@@ -18,7 +18,7 @@ class Elegantnotif extends StatelessWidget {
                       itemOffset: const Offset(-5, -5),
                     ),
                     title: const Text('Update'),
-                    description: const Text('Your data has been updated'),
+                    description: Text(info),
                     onDismiss: () {
                       //Message when the notification is dismissed
                     },
@@ -36,7 +36,7 @@ class Elegantnotif extends StatelessWidget {
 
   void myElegantError(BuildContext context, String err){
     return ElegantNotification.error(
-                    width: 360,
+                    width: MediaQuery.of(context).size.width - 40,
                     stackedOptions: StackedOptions(
                       key: 'topRight',
                       type: StackedType.below,
@@ -52,7 +52,7 @@ class Elegantnotif extends StatelessWidget {
 
   void myElegantInfo(BuildContext context, String info, int tim){
     return ElegantNotification.info(
-                    width: 360,
+                    width: MediaQuery.of(context).size.width - 40,
                     stackedOptions: StackedOptions(
                       key: 'topRight',
                       type: StackedType.same,

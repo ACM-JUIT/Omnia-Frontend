@@ -57,7 +57,7 @@ class _FirehomieState extends State<Firehomie> {
 
       floatingActionButton: FloatingActionButton(onPressed: () {
         Navigator.push(context,
-          MaterialPageRoute(builder: (context) => Profile(),)
+          MaterialPageRoute(builder: (context) => const Profile(),)
         );
       },),
     );

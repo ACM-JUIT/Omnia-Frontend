@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       navigatorObservers: [routeObserver],
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
+      home: const MyHomePage(),
       
     );
   }
