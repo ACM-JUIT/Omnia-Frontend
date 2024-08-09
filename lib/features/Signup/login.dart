@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:omnia/cloud.dart';
-import 'package:omnia/Screens/Signup/auth.dart';
+import 'package:omnia/features/Signup/auth.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});

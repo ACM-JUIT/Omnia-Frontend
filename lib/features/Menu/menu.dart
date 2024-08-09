@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
 import 'package:omnia/Resources/reportbug.dart';
-import 'package:omnia/Screens/Signup/auth.dart';
+import 'package:omnia/features/Signup/auth.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Menu extends StatelessWidget {

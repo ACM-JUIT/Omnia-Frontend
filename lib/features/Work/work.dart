@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
-import 'package:omnia/Screens/Menu/menu.dart';
-import 'package:omnia/Screens/navbar.dart/entry_point.dart';
-import 'package:omnia/Screens/Work/Projects/projects.dart';
-import 'package:omnia/Screens/Work/Resources/reso.dart';
+import 'package:omnia/features/Menu/menu.dart';
+import 'package:omnia/features/navbar.dart/screens/entry_point.dart';
+import 'package:omnia/features/Work/Projects/projects.dart';
+import 'package:omnia/features/Work/Resources/reso.dart';
 
 class Work extends StatelessWidget {
   const Work({super.key});

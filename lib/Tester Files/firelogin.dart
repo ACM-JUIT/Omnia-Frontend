@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:omnia/Screens/Signup/auth.dart';
+import 'package:omnia/features/Signup/auth.dart';
 import 'package:flutter/material.dart';
 
 

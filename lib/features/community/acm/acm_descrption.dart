@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
-import 'package:omnia/Screens/Community/ACM/Sessions/session.dart';
+import 'package:omnia/features/community/ACM/Sessions/session.dart';
 import 'package:omnia/Resources/widget_tiles.dart';
 
 class ACMDetailsPage extends StatefulWidget {

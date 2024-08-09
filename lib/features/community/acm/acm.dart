@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
-import 'package:omnia/Screens/Community/ACM/acm_descrption.dart';
+import 'package:omnia/features/community/ACM/acm_descrption.dart';
 import 'package:omnia/cardvalues.dart';
 
 class ACM extends StatefulWidget {

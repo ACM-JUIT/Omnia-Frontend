@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
-import 'package:omnia/Screens/Community/ACM/Sessions/session_desc.dart';
+import 'package:omnia/features/community/ACM/Sessions/session_desc.dart';
 import 'package:omnia/cardvalues.dart';
 
 class Session extends StatefulWidget {
