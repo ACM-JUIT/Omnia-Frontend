@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
 import 'package:omnia/features/Menu/menu.dart';
-import 'package:omnia/features/navbar.dart/screens/entry_point.dart';
+import 'package:omnia/features/navbar/screens/entry_point.dart';
 import 'package:omnia/features/Work/Projects/projects.dart';
 import 'package:omnia/features/Work/Resources/reso.dart';
 

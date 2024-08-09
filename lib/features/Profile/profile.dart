@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
 import 'package:omnia/Resources/elegantnotif.dart';
-import 'package:omnia/features/navbar.dart/screens/entry_point.dart';
+import 'package:omnia/features/navbar/screens/entry_point.dart';
 import 'package:omnia/features/Profile/profedit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:omnia/features/Signup/auth.dart';

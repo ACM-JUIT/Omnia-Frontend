@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:omnia/features/navbar.dart/widgets/animated_bar.dart';
+import 'package:omnia/features/navbar/widgets/animated_bar.dart';
 import 'package:rive/rive.dart';
 
-import '../../../constants/models/menu.dart';
+import '../models/bottom_menu.dart';
 
 class BtmNavItem extends StatelessWidget {
   final Menu navBar;

@@ -3,7 +3,7 @@ import 'package:omnia/Resources/Theme/theme.dart';
 import 'package:omnia/features/community/ACM/acm.dart';
 import 'package:omnia/features/community/Council/council.dart';
 import 'package:omnia/features/Menu/menu.dart';
-import 'package:omnia/features/navbar.dart/screens/entry_point.dart';
+import 'package:omnia/features/navbar/screens/entry_point.dart';
 // import 'package:omnia/Screens/Home/home.dart';
 
 class Community extends StatelessWidget {
