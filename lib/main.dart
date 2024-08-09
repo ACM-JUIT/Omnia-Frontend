@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 // import 'package:omnia/Screens/Signup/signup.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'Screens/Signup/widgettree.dart';
+import 'features/Signup/widgettree.dart';
 
 final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();  
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp()); 
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -22,7 +22,6 @@ class MyApp extends StatelessWidget {
       navigatorObservers: [routeObserver],
       debugShowCheckedModeBanner: false,
       home: const MyHomePage(),
-      
     );
   }
 }
@@ -33,15 +32,14 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: GestureDetector(
         onTap: () {
           Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const WidgetTREEE(),
-                            ),
-                          );
+            context,
+            MaterialPageRoute(
+              builder: (context) => const WidgetTREEE(),
+            ),
+          );
         },
         child: Container(
           height: 1864,
@@ -91,9 +89,7 @@ class MyHomePage extends StatelessWidget {
                     ),
                   ],
                 ),
-
-                const SizedBox( height: 160),
-                
+                const SizedBox(height: 160),
                 Container(
                   height: 76,
                   width: 148,

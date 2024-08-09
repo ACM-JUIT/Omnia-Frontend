@@ -19,9 +19,6 @@ class CloudFire {
     }
   }
 
-  
-  
-
   Future<void> createBug(String docId, String newName, String usern, String biostr, String twit, String git, String linked) {
     return nameref.doc(docId).update({
         'name': newName, 
