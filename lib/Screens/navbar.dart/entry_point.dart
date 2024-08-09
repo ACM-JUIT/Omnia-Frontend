@@ -9,14 +9,14 @@ import 'package:omnia/Screens/Work/work.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:omnia/Screens/Signup/auth.dart';
 
-class Nav extends StatefulWidget {
-  const Nav({Key? key}) : super(key: key);
+class EntryPoint extends StatefulWidget {
+  const EntryPoint({Key? key}) : super(key: key);
 
   @override
-  State<Nav> createState() => _NavState();
+  State<EntryPoint> createState() => _EntryPointState();
 }
 
-class _NavState extends State<Nav> {
+class _EntryPointState extends State<EntryPoint> {
 
   final User? user = Auth().currentUser;
 

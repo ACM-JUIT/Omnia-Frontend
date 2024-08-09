@@ -35,7 +35,7 @@ class _CouncilState extends State<Council> {
                 heading: 'Ritwija Deep',
                 subheading: 'Chairperson',
                 imagePath: 'assets/profile1.png',
-                description: 'Led the community with strategic vision and guidance, overseeing all activities and ensuring alignment with ACM-JUIT’s goals.',
+                description: "Led the community with strategic vision and guidance, overseeing all activities and ensuring alignment with ACM-JUIT's goals.",
               ),
               // Custom card 2
               _buildCard(
@@ -43,7 +43,7 @@ class _CouncilState extends State<Council> {
                 heading: 'Shashank Singh',
                 subheading: 'Vice Chairperson',
                 imagePath: 'assets/profile2.png',
-                description: 'Assisted in managing the community’s operations and played a key role in implementing initiatives and coordinating events.',
+                description: "Assisted in managing the community's operations and played a key role in implementing initiatives and coordinating events.",
               ),
               // Custom card 3
               _buildCard(
@@ -51,7 +51,7 @@ class _CouncilState extends State<Council> {
                 heading: 'Manas Bajpai',
                 subheading: 'Webmaster',
                 imagePath: 'assets/profile3.png',
-                description: 'Maintained and updated the community’s online presence, including creating and managing ACM-JUIT’s website and event-specific sites.  ',
+                description: "Maintained and updated the community's online presence, including creating and managing ACM-JUIT's website and event-specific sites.  ",
               ),
               // Custom card 4
               _buildCard(
@@ -59,7 +59,7 @@ class _CouncilState extends State<Council> {
                 heading: 'Vidushi Dwivedi',
                 subheading: 'Treasurer',
                 imagePath: 'assets/profile4.png',
-                description: 'Vidushi Dwivedi is the Treasurer, responsible for managing the council\'s finances.',
+                description: "Vidushi Dwivedi is the Treasurer, responsible for managing the council's finances.",
               ),
               // Custom card 5
               _buildCard(
@@ -67,21 +67,21 @@ class _CouncilState extends State<Council> {
                 heading: 'Yatharth',
                 subheading: 'Secretary',
                 imagePath: 'assets/profile5.png',
-                description: 'Handled documentation, meeting notes, and internal communications, ensuring organized and efficient management of community activities.',
+                description: "Handled documentation, meeting notes, and internal communications, ensuring organized and efficient management of community activities.",
               ),
               _buildCard(
                 context: context,
                 heading: 'Nikhilesh',
                 subheading: 'Membership Chair',
                 imagePath: 'assets/profile1.png',
-                description: 'Oversaw member recruitment, retention, and engagement, working to grow and support the community’s membership base.',
+                description: "Oversaw member recruitment, retention, and engagement, working to grow and support the community's membership base.",
               ),
               _buildCard(
                 context: context,
                 heading: 'Vidhi Jaiswal',
                 subheading: 'Creative Head',
                 imagePath: 'assets/profile2.png',
-                description: 'Directed creative efforts, including event branding, content creation, and design, to enhance the community’s visual and thematic appeal.',
+                description: "Directed creative efforts, including event branding, content creation, and design, to enhance the community's visual and thematic appeal.",
               ),
             ],
           ),

@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:omnia/Resources/Theme/theme.dart';
 import 'package:omnia/Resources/elegantnotif.dart';
-import 'package:omnia/Screens/navbar.dart/navbar.dart';
+import 'package:omnia/Screens/navbar.dart/entry_point.dart';
 import 'package:omnia/Screens/Profile/profedit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:omnia/Screens/Signup/auth.dart';
@@ -110,7 +110,7 @@ class _ProfileState extends State<Profile> with RouteAware {
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const Nav();
+              return const EntryPoint();
             }));
           },
         ),
